@@ -56,5 +56,5 @@ public class Owner {
     public void setPets(Set<Pet> pets) {
         this.pets = pets;
     }
-    
+
 }

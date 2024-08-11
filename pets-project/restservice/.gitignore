@@ -18,7 +18,7 @@ target/
 *.iws
 *.iml
 *.ipr
-.testcypress/node_modules/
+
 
 ### NetBeans ###
 /nbproject/private/
