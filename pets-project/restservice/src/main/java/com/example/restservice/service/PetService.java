@@ -1,6 +1,7 @@
 package com.example.restservice.service;
 
 import com.example.restservice.api.ResourceNotFoundException;
+import com.example.restservice.api.model.Owner;
 import com.example.restservice.api.model.Pet;
 import com.example.restservice.api.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,18 @@ public class PetService {
         return existingPet;
     }
 
+    public Pet updatePetPartially(int id, Pet dataToUpdatePet) {
+        Pet existingPet = getPetById(id);
+        if (existingPet == null){
+            throw new ResourceNotFoundException();
+        }
+        // TODO: corregir, debe aceptar null o cero como valor
+        existingPet.setName(dataToUpdatePet.getName() != null ? dataToUpdatePet.getName() : existingPet.getName());
+        existingPet.setAge(dataToUpdatePet.getAge() != 0 ? dataToUpdatePet.getAge() : existingPet.getAge() );
+        petRepository.save(existingPet);
+        return existingPet;
+    }
+
     public Pet deletePet(int id) {
         Pet petToDelete = getPetById(id);
         if (petToDelete == null) {
@@ -50,13 +63,14 @@ public class PetService {
         return petToDelete;
     }
 
-//    public Pet updateOwner(int petId, int newOwnerId) {
-//        Pet existingPet = getPetById(petId);
-//        if (existingPet == null){
-//            throw new ResourceNotFoundException();
-//        }
-//        existingPet.setOwner(newOwnerId);
-//        petRepository.save(existingPet);
-//        return existingPet;
-//    }
+    // TODO: hacer funcionar el metodo que actualiza el owner de un pet
+    public Pet updateOwner(int petId, Owner newOwner) {
+        Pet existingPet = getPetById(petId);
+        if (existingPet == null){
+            throw new ResourceNotFoundException();
+        }
+        existingPet.setOwner(newOwner);
+        petRepository.save(existingPet);
+        return existingPet;
+    }
 }

@@ -2,7 +2,9 @@ package com.example.restservice.api.controller;
 
 import com.example.restservice.api.InvalidParameterException;
 import com.example.restservice.api.ResourceNotFoundException;
+import com.example.restservice.api.model.Owner;
 import com.example.restservice.api.model.Pet;
+import com.example.restservice.service.OwnerService;
 import com.example.restservice.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,9 @@ public class PetController {
 
     @Autowired
     private PetService petService;
+
+    @Autowired
+    private OwnerService ownerService;
 
     @GetMapping("/pet/{id}")
     public Pet getPetById(@PathVariable("id") int id) {
@@ -45,14 +50,22 @@ public class PetController {
 
     @PostMapping("/pet")
     public Pet createPet(@RequestBody() Pet pet){
-        // Validar la mascota
+        // TODO: Validar la mascota
        // Validar que lo que me mandaron este bien: en el controller se suele validar cosas de formato
+
         return petService.createPet(pet);
     }
 
     @PutMapping("/pet/{id}")
     public Pet updatePet(@PathVariable("id") int id, @RequestBody() Pet pet){
+        // TODO: validar pet
         return petService.updatePet(id, pet);
+    }
+
+    @PatchMapping("/pet/{id}")
+    public Pet updatePetPartially(@PathVariable("id") int id, @RequestBody() Pet pet){
+        // TODO: validar pet
+        return petService.updatePetPartially(id, pet);
     }
 
     @DeleteMapping("/pet/{id}")
@@ -60,11 +73,14 @@ public class PetController {
         return petService.deletePet(id);
     }
 
-//    @PutMapping("/owner/{ownerId}/pet/{petId}")
-//    public Pet updatePetOwner(@PathVariable("petId") int petId,
-//                              @PathVariable("ownerId") int newOwnerId) {
-//        return petService.updateOwner(petId, newOwnerId);
-//    }
-
+    @PutMapping("/owner/{ownerId}/pet/{petId}")
+    public Pet updatePetOwner(@PathVariable("petId") int petId,
+                              @PathVariable("ownerId") int newOwnerId) {
+        Owner newOwner = ownerService.getOwnerById(newOwnerId);
+        if (newOwner == null) {
+            throw new ResourceNotFoundException();
+        }
+        return petService.updateOwner(petId, newOwner);
+    }
 
 }
