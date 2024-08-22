@@ -1,0 +1,32 @@
+package com.example.restservice.api.controller;
+
+import com.example.restservice.api.model.Food;
+import com.example.restservice.api.model.Owner;
+import com.example.restservice.service.FoodService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class FoodController {
+
+    @Autowired
+    private FoodService foodService;
+
+    @GetMapping("/food/{id}")
+    public Food getFoodById(@PathVariable("id") int id) {
+        return foodService.getFoodById(id);
+    }
+
+    @GetMapping("/food")
+    public List<Food> getFood(@RequestParam("name") String name) {
+        return foodService.getFoods(name);
+    }
+
+    @PostMapping("/food")
+    public Food createFood(@RequestBody() Food food) {
+        return foodService.createFood(food);
+    }
+
+}

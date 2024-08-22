@@ -15,8 +15,7 @@ public class OwnerService {
     @Autowired
     private OwnerRepository ownerRepository;
 
-    public OwnerService() {
-    }
+    public OwnerService() {}
 
     public Owner getOwnerById(int id) {
         Optional<Owner> owner = ownerRepository.findById(id);
