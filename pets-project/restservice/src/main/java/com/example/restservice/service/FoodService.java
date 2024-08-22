@@ -27,8 +27,4 @@ public class FoodService {
         foodRepository.save(food);
         return food;
     }
-
-    public Food updateFood(Food food) {
-
-    }
 }
