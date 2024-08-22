@@ -1,8 +1,10 @@
 package com.example.restservice.service;
 
+import com.example.restservice.api.InvalidParameterException;
 import com.example.restservice.api.ResourceNotFoundException;
 import com.example.restservice.api.model.Owner;
 import com.example.restservice.api.model.Pet;
+import com.example.restservice.api.repository.OwnerRepository;
 import com.example.restservice.api.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +17,18 @@ public class PetService {
     @Autowired
     private PetRepository petRepository;
 
+    @Autowired
+    private OwnerRepository ownerRepository;
+
     public PetService() {}
 
     public Pet getPetById(int id) {
         Optional<Pet> pet = petRepository.findById(id);
         return pet.orElse(null);
+    }
+    public Owner getOwnerByPet(int id) {
+        Optional<Owner> owner = ownerRepository.findById(id);
+        return owner.orElse(null);
     }
 
     public List<Pet> getPets(Optional<String> name, Optional<Integer> olderThan, Optional<Integer> youngerThan) {
@@ -63,14 +72,26 @@ public class PetService {
         return petToDelete;
     }
 
-    // TODO: hacer funcionar el metodo que actualiza el owner de un pet
     public Pet updateOwner(int petId, Owner newOwner) {
         Pet existingPet = getPetById(petId);
-        if (existingPet == null){
+        int MAX_PETS_ALLOW = 2;
+        if (existingPet == null ){
             throw new ResourceNotFoundException();
+        }
+        if (existingPet.getOwner() != null) {
+            throw new InvalidParameterException("The pet already has an owner.");
+        }
+        if (existingPet.getAge() > 10) {
+            throw new InvalidParameterException("You can't adopt a pet older than 10 years.");
+        }
+
+        if (newOwner.getPets().size() >= MAX_PETS_ALLOW) {
+            throw new InvalidParameterException("The owner has enough pets.");
         }
         existingPet.setOwner(newOwner);
         petRepository.save(existingPet);
         return existingPet;
     }
+
+
 }

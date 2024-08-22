@@ -1,5 +1,6 @@
 package com.example.restservice.service;
 
+import com.example.restservice.api.InvalidParameterException;
 import com.example.restservice.api.ResourceNotFoundException;
 import com.example.restservice.api.model.Owner;
 import com.example.restservice.api.repository.OwnerRepository;
@@ -48,14 +49,15 @@ public class OwnerService {
         if (ownerToDelete == null) {
             throw new ResourceNotFoundException();
         }
+        if(!ownerToDelete.getPets().isEmpty()) {
+            throw new InvalidParameterException("Can't delete an owner with pets");
+        }
         ownerRepository.delete(ownerToDelete);
         return ownerToDelete;
     }
 
     public List<Owner> getOwnersWithPets(){
         List<Owner> owners = ownerRepository.fetchOwnerPetsNoFetch();
-        owners.get(0).getPets().forEach(pet -> {});
-        owners.get(1).getPets();
         return owners;
     }
 

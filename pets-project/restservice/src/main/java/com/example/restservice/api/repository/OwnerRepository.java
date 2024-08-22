@@ -17,4 +17,5 @@ public interface OwnerRepository extends JpaRepository<Owner, Integer> {
 
     @Query(value = "SELECT o FROM Owner o JOIN o.pets p")
     List<Owner> fetchOwnerPetsNoFetch();
+
 }

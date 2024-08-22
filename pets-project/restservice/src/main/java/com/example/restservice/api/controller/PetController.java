@@ -6,10 +6,13 @@ import com.example.restservice.api.model.Owner;
 import com.example.restservice.api.model.Pet;
 import com.example.restservice.service.OwnerService;
 import com.example.restservice.service.PetService;
+import com.example.restservice.utils.validation;
+import org.hibernate.engine.jdbc.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -32,6 +35,7 @@ public class PetController {
     }
 
     @GetMapping("/pet")
+
     public List<Pet> getPets(@RequestParam("name") Optional<String> name,
                                   @RequestParam("olderThan") Optional<Integer> olderThan,
                                   @RequestParam("youngerThan") Optional<Integer> youngerThan){
@@ -50,21 +54,23 @@ public class PetController {
 
     @PostMapping("/pet")
     public Pet createPet(@RequestBody() Pet pet){
-        // TODO: Validar la mascota
-       // Validar que lo que me mandaron este bien: en el controller se suele validar cosas de formato
-
         return petService.createPet(pet);
     }
 
     @PutMapping("/pet/{id}")
     public Pet updatePet(@PathVariable("id") int id, @RequestBody() Pet pet){
-        // TODO: validar pet
+        if(isNameValid(pet)) {
+            throw new InvalidParameterException("Name must not be null or empty");
+        }
+
+        if(!isAgePositiveNumber(pet)) {
+            throw new InvalidParameterException("Age must be positive");
+        }
         return petService.updatePet(id, pet);
     }
 
     @PatchMapping("/pet/{id}")
     public Pet updatePetPartially(@PathVariable("id") int id, @RequestBody() Pet pet){
-        // TODO: validar pet
         return petService.updatePetPartially(id, pet);
     }
 
@@ -77,10 +83,15 @@ public class PetController {
     public Pet updatePetOwner(@PathVariable("petId") int petId,
                               @PathVariable("ownerId") int newOwnerId) {
         Owner newOwner = ownerService.getOwnerById(newOwnerId);
-        if (newOwner == null) {
-            throw new ResourceNotFoundException();
-        }
         return petService.updateOwner(petId, newOwner);
     }
 
+
+    public static boolean isAgePositiveNumber(Pet pet) {
+        return pet.getAge() > 0;
+    }
+
+    public static boolean isNameValid(Pet pet) {
+        return !pet.getName().isEmpty() || pet.getName() != null;
+    }
 }

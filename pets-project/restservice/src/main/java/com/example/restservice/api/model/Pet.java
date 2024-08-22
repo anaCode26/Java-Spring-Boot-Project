@@ -2,7 +2,9 @@ package com.example.restservice.api.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Table(name = "pet")
