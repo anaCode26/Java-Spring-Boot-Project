@@ -27,7 +27,7 @@ public class OwnerService {
         return owner;
     }
 
-    public List<Owner> getOwners(String name) {
+    public List<Owner> getOwner(String name) {
         return ownerRepository.getOwner(name);
     }
 

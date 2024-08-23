@@ -13,14 +13,16 @@ public class Food {
     private String name;
     private double price;
     private String brand;
+    private Boolean isVegan;
 
     public Food() {}
 
-    public Food(int id, String name, double price, String brand) {
+    public Food(int id, String name, double price, String brand, Boolean isVegan) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.brand = brand;
+        this.isVegan = isVegan;
     }
 
     public int getId() {
@@ -53,5 +55,13 @@ public class Food {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public Boolean getVegan() {
+        return isVegan;
+    }
+
+    public void setVegan(Boolean vegan) {
+        isVegan = vegan;
     }
 }

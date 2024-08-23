@@ -15,9 +15,7 @@ public class FoodController {
     private FoodService foodService;
 
     @GetMapping("/food/{id}")
-    public Food getFoodById(@PathVariable("id") int id) {
-        return foodService.getFoodById(id);
-    }
+    public Food getFoodById(@PathVariable("id") int id) { return foodService.getFoodById(id); }
 
     @GetMapping("/food")
     public List<Food> getFood(@RequestParam("name") String name) {
@@ -29,4 +27,11 @@ public class FoodController {
         return foodService.createFood(food);
     }
 
+    @PutMapping("/food/{id}")
+    public Food updateFood(@PathVariable("id") int id, @RequestBody() Food food) {
+        return foodService.updateFood(id, food);
+    }
+
+    @DeleteMapping("food/{id}")
+    public Food deleteFood(@PathVariable("id") int id) { return foodService.deleteFood(id);}
 }

@@ -19,8 +19,8 @@ public class OwnerController {
     }
 
     @GetMapping("/owner")
-    public List<Owner> getOwners(@RequestParam("name") String name) {
-        return ownerService.getOwners(name);
+    public List<Owner> getOwner(@RequestParam("name") String name) {
+        return ownerService.getOwner(name);
     }
 
     @PostMapping("/owner")
