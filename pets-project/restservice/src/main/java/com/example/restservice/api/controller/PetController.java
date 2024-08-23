@@ -35,7 +35,6 @@ public class PetController {
     }
 
     @GetMapping("/pet")
-
     public List<Pet> getPets(@RequestParam("name") Optional<String> name,
                                   @RequestParam("olderThan") Optional<Integer> olderThan,
                                   @RequestParam("youngerThan") Optional<Integer> youngerThan){

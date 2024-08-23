@@ -1,5 +1,7 @@
 package com.example.restservice.service;
 
+import com.example.restservice.api.InvalidParameterException;
+import com.example.restservice.api.ResourceNotFoundException;
 import com.example.restservice.api.model.Food;
 import com.example.restservice.api.repository.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +28,26 @@ public class FoodService {
     public Food createFood(Food food) {
         foodRepository.save(food);
         return food;
+    }
+
+    public Food updateFood(int id, Food dataToUpdateFood) {
+        Food existingFood = getFoodById(id);
+        if (existingFood == null) {
+            throw new ResourceNotFoundException();
+        }
+        existingFood.setName(dataToUpdateFood.getName());
+        existingFood.setBrand(dataToUpdateFood.getBrand());
+        existingFood.setPrice(dataToUpdateFood.getPrice());
+        foodRepository.save(existingFood);
+        return existingFood;
+    }
+
+    public Food deleteFood(int id) {
+        Food foodToDelete = getFoodById(id);
+        if (foodToDelete == null) {
+            throw new ResourceNotFoundException();
+        }
+        foodRepository.delete(foodToDelete);
+        return foodToDelete;
     }
 }
