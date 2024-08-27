@@ -23,10 +23,6 @@ public class FoodService {
         return food.orElse(null);
     }
 
-    public List<Pet> getPetsByFavFood(int id) {
-        return foodRepository.getPetsByFavFoodId(id);
-    }
-
     public List<Food> getFoods(String name) {
         return foodRepository.getFood(name);
     }
