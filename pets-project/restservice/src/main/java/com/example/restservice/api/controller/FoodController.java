@@ -20,11 +20,6 @@ public class FoodController {
     @GetMapping("/food/{id}")
     public Food getFoodById(@PathVariable("id") int id) { return foodService.getFoodById(id); }
 
-    @GetMapping("/food/{foodId}/pet")
-    public List<Pet> getPetsByFavFoodId(@PathVariable("foodId") int id) {
-        return foodService.getPetsByFavFood(id);
-    }
-
     @GetMapping("/food")
     public List<Food> getFood(@RequestParam("name") String name) {
         return foodService.getFoods(name);

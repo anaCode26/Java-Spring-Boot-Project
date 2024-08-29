@@ -12,8 +12,4 @@ public interface FoodRepository extends JpaRepository<Food, Integer> {
     @Query("SELECT f from Food f where " +
             " (:nameFilter is NULL OR f.name like :nameFilter)")
     List<Food> getFood(@Param("nameFilter") String name);
-
-
-    @Query("SELECT p FROM Pet p WHERE p.food.id = :foodId")
-    List<Pet> getPetsByFavFoodId(@Param("foodId") Integer foodId);
 }

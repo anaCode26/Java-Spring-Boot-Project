@@ -35,8 +35,16 @@ public class PetService {
         return owner.orElse(null);
     }
 
-    public List<Pet> getPets(Optional<String> name, Optional<Integer> olderThan, Optional<Integer> youngerThan) {
-        return petRepository.getPet(name.orElse(null), olderThan.orElse(null), youngerThan.orElse(null));
+    public List<Pet> getPets(Optional<String> name, Optional<Integer> olderThan, Optional<Integer> youngerThan, Optional<Boolean> likesVeganFood) {
+        return petRepository.getPet(
+                name.orElse(null),
+                olderThan.orElse(null),
+                youngerThan.orElse(null),
+                likesVeganFood.orElse(null));
+    }
+
+    public List<Pet> getPetsByFavFood(int id) {
+        return petRepository.getPetsByFavFoodId(id);
     }
 
     public Pet createPet(Pet pet){
