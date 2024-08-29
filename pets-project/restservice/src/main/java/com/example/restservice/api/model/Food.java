@@ -1,9 +1,8 @@
 package com.example.restservice.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Food {
@@ -14,6 +13,9 @@ public class Food {
     private double price;
     private String brand;
     private Boolean isVegan;
+
+    @OneToMany(mappedBy = "food", fetch = FetchType.LAZY)
+    private Set<Pet> pets;
 
     public Food() {}
 
@@ -63,5 +65,13 @@ public class Food {
 
     public void setVegan(Boolean vegan) {
         isVegan = vegan;
+    }
+
+    public Set<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(Set<Pet> pets) {
+        this.pets = pets;
     }
 }

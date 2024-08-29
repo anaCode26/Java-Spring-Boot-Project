@@ -4,6 +4,7 @@ import com.example.restservice.api.InvalidParameterException;
 import com.example.restservice.api.ResourceNotFoundException;
 import com.example.restservice.api.model.Owner;
 import com.example.restservice.api.model.Pet;
+import com.example.restservice.api.repository.FoodRepository;
 import com.example.restservice.api.repository.OwnerRepository;
 import com.example.restservice.api.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class PetService {
 
     @Autowired
     private OwnerRepository ownerRepository;
+
+    @Autowired
+    private FoodRepository foodRepository;
 
     public PetService() {}
 

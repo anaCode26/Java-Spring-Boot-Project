@@ -19,6 +19,10 @@ public class Pet {
     @ManyToOne
     private Owner owner;
 
+    @JsonIgnore
+    @ManyToOne
+    private Food food;
+
     public Pet(){}
 
     public Pet(int id, String name, int age) {
@@ -55,7 +59,13 @@ public class Pet {
         return owner;
     }
 
+    public Food getFood() { return food;}
+
     public void setOwner(Owner owner) {
         this.owner = owner;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
     }
 }
