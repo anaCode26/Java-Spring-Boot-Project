@@ -64,7 +64,7 @@ public class PetController {
 
     @PutMapping("/pet/{id}")
     public Pet updatePet(@PathVariable("id") int id, @RequestBody() Pet pet){
-        if(isNameValid(pet)) {
+        if(!isNameValid(pet)) {
             throw new InvalidParameterException("Name must not be null or empty");
         }
 
@@ -97,6 +97,6 @@ public class PetController {
     }
 
     public static boolean isNameValid(Pet pet) {
-        return !pet.getName().isEmpty() || pet.getName() != null;
+        return pet.getName() != null && !pet.getName().isEmpty();
     }
 }

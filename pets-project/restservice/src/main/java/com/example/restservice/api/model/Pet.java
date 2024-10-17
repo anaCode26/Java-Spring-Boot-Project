@@ -11,7 +11,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private int age;
 
@@ -25,13 +25,13 @@ public class Pet {
 
     public Pet(){}
 
-    public Pet(int id, String name, int age) {
+    public Pet(Integer id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -43,7 +43,7 @@ public class Pet {
         return age;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

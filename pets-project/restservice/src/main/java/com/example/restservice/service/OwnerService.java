@@ -60,4 +60,9 @@ public class OwnerService {
         return owners;
     }
 
+    public Owner getAmountFoodPerOwner(int id) {
+//        Owner owner = ownerRepository.getAmountCostPerOwner();
+        return null;
+    }
+
 }

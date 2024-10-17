@@ -77,9 +77,6 @@ public class PetService {
 
     public Pet deletePet(int id) {
         Pet petToDelete = getPetById(id);
-        if (petToDelete == null) {
-            throw new ResourceNotFoundException();
-        }
         petRepository.delete(petToDelete);
         return petToDelete;
     }

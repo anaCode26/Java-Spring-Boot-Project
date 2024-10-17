@@ -39,5 +39,8 @@ public class OwnerController {
     @GetMapping("/owners")
     public List<Owner> getOwnersWithPets() { return ownerService.getOwnersWithPets();}
 
+    @GetMapping("food/owner/{id}")
+    public Owner getCostFoodOwner(@PathVariable("id") int id) { return ownerService.getAmountFoodPerOwner(id);}
+
 }
 
