@@ -52,7 +52,7 @@ class PetControllerIT {
 	}
 
 	@Test
-	void updatePet_validPet_returnsPetNameUpdated() {
+	void updatePet_updateName_returnsPetNameUpdated() {
 		// Arrange
 		Pet initialPet = new Pet();
 		initialPet.setName("Popi");
@@ -67,7 +67,7 @@ class PetControllerIT {
 
 		// Assert
 		assertTrue(petFromBD.isPresent());
-		assertEquals(petFromBD.get().getName(),updatedPet.getName());
+		assertEquals("Mengano",petFromBD.get().getName());
 		// TODO: agregar aca que obtenga el pet de la db con el repository y valide que el atributo haya cambiado
 	}
 
