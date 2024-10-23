@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -140,5 +141,36 @@ class PetControllerIT {
 		assertTrue(nonExistingPet.isEmpty());
 	}
 
+	@Test
+	void deletePet_nonExistingPet_getsDeletedFromDb() {
+		//Arrange
+		int NON_EXISTING_PET_ID = 0;
+
+		// Assert
+		assertThrows(ResourceNotFoundException.class,
+				() -> petController.deletePet(NON_EXISTING_PET_ID));
+	}
+
+	@Test
+	public void whenCreatesEmptyOptional_thenCorrect() {
+		Optional<Pet> empty = Optional.empty();
+
+		Optional<Integer> number = Optional.of(5);
+
+		Integer doubleOfNumber = number.get() * 2;
+	}
+
+	public void hacerAlgo(Optional<Integer> number){
+		if (number.isPresent()){
+			Integer doubleOfNumber = number.get() * 2;
+		}
+		number.ifPresent(valorDeAdentro -> {
+			Integer doubleOfNumber = valorDeAdentro * 2;
+		});
+
+		Integer valor = number.orElse(1);
+		Integer valor2 = number.orElseThrow();
+
+	}
 
 }
