@@ -15,7 +15,7 @@ public class Owner {
     private String name;
     private String address;
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private Set<Pet> pets;
 
 

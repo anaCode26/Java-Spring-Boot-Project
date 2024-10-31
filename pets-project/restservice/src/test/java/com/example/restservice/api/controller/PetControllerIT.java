@@ -2,7 +2,9 @@ package com.example.restservice.api.controller;
 
 import com.example.restservice.api.InvalidParameterException;
 import com.example.restservice.api.ResourceNotFoundException;
+import com.example.restservice.api.model.Owner;
 import com.example.restservice.api.model.Pet;
+import com.example.restservice.api.repository.OwnerRepository;
 import com.example.restservice.api.repository.PetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,7 @@ import org.springframework.test.context.TestPropertySource;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -32,6 +35,9 @@ class PetControllerIT {
 
 	@Autowired
 	PetRepository petRepository;
+
+	@Autowired
+	OwnerRepository ownerRepository;
 
 	@BeforeEach
 	public void setup() {
@@ -69,7 +75,6 @@ class PetControllerIT {
 		// Assert
 		assertTrue(petFromBD.isPresent());
 		assertEquals("Mengano",petFromBD.get().getName());
-		// TODO: agregar aca que obtenga el pet de la db con el repository y valide que el atributo haya cambiado
 	}
 
 	@Test
@@ -89,11 +94,10 @@ class PetControllerIT {
 		// Assert
 		assertTrue(petFromBD.isPresent());
 		assertEquals(petFromBD.get().getAge(),updatedPet.getAge());
-		// TODO: agregar aca que obtenga el pet de la db con el repository y valide que el atributo haya cambiado
 	}
 
 	@Test
-	void updatePet_invalidName_returnsException() {
+	void updatePet_invalidName_throwsException() {
 			// Arrange
 			Pet initialPet = new Pet();
 			initialPet.setName("Popi");
@@ -108,7 +112,7 @@ class PetControllerIT {
 	}
 
 	@Test
-	void updatePet_invalidAge_returnsException() {
+	void updatePet_invalidAge_throwsException() {
 		// Arrange
 		Pet initialPet = new Pet();
 		initialPet.setName("Popi");
@@ -152,25 +156,121 @@ class PetControllerIT {
 	}
 
 	@Test
-	public void whenCreatesEmptyOptional_thenCorrect() {
-		Optional<Pet> empty = Optional.empty();
+	void updatePetOwner_validPetOwner_updatesPetOwner(){
+		//Arrange
+		Pet initialPet = new Pet();
+		initialPet.setName("Popi");
+		initialPet.setAge(4);
+		Pet savedPet = petRepository.save(initialPet);
 
-		Optional<Integer> number = Optional.of(5);
+		Owner initialOwner = new Owner();
+		initialOwner.setName("Rodri");
+		Owner savedOwner = ownerRepository.save(initialOwner);
 
-		Integer doubleOfNumber = number.get() * 2;
+		// Act
+		petController.updatePetOwner(savedPet.getId(), savedOwner.getId());
+
+		// Assert
+		Pet updatedPet = petRepository.findById(savedPet.getId()).orElseThrow();
+		assertEquals(savedOwner.getId(), updatedPet.getOwner().getId());
 	}
 
-	public void hacerAlgo(Optional<Integer> number){
-		if (number.isPresent()){
-			Integer doubleOfNumber = number.get() * 2;
-		}
-		number.ifPresent(valorDeAdentro -> {
-			Integer doubleOfNumber = valorDeAdentro * 2;
-		});
+	@Test
+	void updatePetOwner_ownerWith2Pets_throws(){
+		//Arrange
+		Owner initialOwner = new Owner();
+		initialOwner.setName("Rodri");
+		Owner savedOwner = ownerRepository.save(initialOwner);
 
-		Integer valor = number.orElse(1);
-		Integer valor2 = number.orElseThrow();
+		Pet pet1 = new Pet();
+		pet1.setName("Popi");
+		pet1.setAge(4);
+		pet1.setOwner(savedOwner);
+		petRepository.save(pet1);
+
+		Pet pet2 = new Pet();
+		pet2.setName("Popi");
+		pet2.setAge(4);
+		pet2.setOwner(savedOwner);
+		petRepository.save(pet2);
+
+
+		Pet pet3 = new Pet();
+		pet2.setName("Popa");
+		pet2.setAge(3);
+		Pet savedPet3 = petRepository.save(pet3);
+
+		// Act + assert
+		assertThrows(InvalidParameterException.class,
+				() -> petController.updatePetOwner(savedPet3.getId(), savedOwner.getId()));
+	}
+
+	@Test
+	void updatePetOwner_petOlderThan10Years_throws(){
+		//Arrange
+		Owner initialOwner = new Owner();
+		initialOwner.setName("Rodri");
+		Owner savedOwner = ownerRepository.save(initialOwner);
+
+		Pet pet = new Pet();
+		pet.setName("Popi");
+		pet.setAge(12);
+		Pet petOld = petRepository.save(pet);
+
+		// Act + assert
+		assertThrows(InvalidParameterException.class,
+				() -> petController.updatePetOwner(petOld.getId(), savedOwner.getId()));
+	}
+
+	@Test
+	void updatePetOwner_petAlreadyHasOwner_throws() {
+		//Arrange
+		Owner initialOwner = new Owner();
+		initialOwner.setName("Rodri");
+		Owner savedOwner = ownerRepository.save(initialOwner);
+
+		Pet pet = new Pet();
+		pet.setName("Popi");
+		pet.setAge(4);
+		pet.setOwner(savedOwner);
+		petRepository.save(pet);
+
+		Owner secondOwner = new Owner();
+		secondOwner.setName("Pepe");
+		Owner savedSecondOwner = ownerRepository.save(secondOwner);
+
+		// Act + assert
+		assertThrows(InvalidParameterException.class,
+				() -> petController.updatePetOwner(pet.getId(), savedSecondOwner.getId()));
 
 	}
 
+	@Test
+	void updatePetOwner_petNotExist_throws() {
+		//Arrange
+		Owner initialOwner = new Owner();
+		initialOwner.setName("Rodri");
+		Owner savedOwner = ownerRepository.save(initialOwner);
+
+		int NON_EXISTING_PET_ID = 0;
+
+		// Act + assert
+		assertThrows(ResourceNotFoundException.class,
+				() -> petController.updatePetOwner(NON_EXISTING_PET_ID, savedOwner.getId()));
+	}
+
+	@Test
+	void updatePetOwner_ownerNotExist_throws() {
+		//Arrange
+		int NON_EXISTING_OWNER_ID = 0;
+
+		Pet pet = new Pet();
+		pet.setName("Popi");
+		pet.setAge(4);
+		petRepository.save(pet);
+
+		// Act + assert
+		assertThrows(ResourceNotFoundException.class,
+				() -> petController.updatePetOwner(pet.getId(), NON_EXISTING_OWNER_ID));
+	}
 }
