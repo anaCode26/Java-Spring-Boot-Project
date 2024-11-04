@@ -1,11 +1,9 @@
 package com.example.restservice.service;
 
-import com.example.restservice.api.InvalidParameterException;
 import com.example.restservice.api.ResourceNotFoundException;
+import com.example.restservice.api.dto.FoodPreference;
 import com.example.restservice.api.model.Food;
-import com.example.restservice.api.model.Pet;
 import com.example.restservice.api.repository.FoodRepository;
-import com.example.restservice.api.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +49,9 @@ public class FoodService {
         }
         foodRepository.delete(foodToDelete);
         return foodToDelete;
+    }
+
+    public List<FoodPreference> getFoodsWithPetPreferences() {
+        return null;
     }
 }

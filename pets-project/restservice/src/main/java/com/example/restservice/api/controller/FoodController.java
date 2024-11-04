@@ -1,15 +1,12 @@
 package com.example.restservice.api.controller;
 
+import com.example.restservice.api.dto.FoodPreference;
 import com.example.restservice.api.model.Food;
-import com.example.restservice.api.model.Owner;
-import com.example.restservice.api.model.Pet;
 import com.example.restservice.service.FoodService;
-import com.example.restservice.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class FoodController {
@@ -37,4 +34,10 @@ public class FoodController {
 
     @DeleteMapping("food/{id}")
     public Food deleteFood(@PathVariable("id") int id) { return foodService.deleteFood(id);}
+
+    @GetMapping("food-preference")
+    public List<FoodPreference> getFoodWithPetPreferences() {
+        return foodService.getFoodsWithPetPreferences();
+    }
+
 }
