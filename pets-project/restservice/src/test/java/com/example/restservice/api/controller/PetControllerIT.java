@@ -146,7 +146,7 @@ class PetControllerIT {
 	}
 
 	@Test
-	void deletePet_nonExistingPet_getsDeletedFromDb() {
+	void deletePet_nonExistingPet_throws() {
 		//Arrange
 		int NON_EXISTING_PET_ID = 0;
 

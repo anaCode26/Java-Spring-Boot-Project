@@ -68,7 +68,6 @@ public class PetService {
         if (existingPet == null){
             throw new ResourceNotFoundException();
         }
-        // TODO: corregir, debe aceptar null o cero como valor
         existingPet.setName(dataToUpdatePet.getName() != null ? dataToUpdatePet.getName() : existingPet.getName());
         existingPet.setAge(dataToUpdatePet.getAge() != 0 ? dataToUpdatePet.getAge() : existingPet.getAge() );
         petRepository.save(existingPet);
@@ -77,6 +76,9 @@ public class PetService {
 
     public Pet deletePet(int id) {
         Pet petToDelete = getPetById(id);
+        if (petToDelete == null) {
+            throw new ResourceNotFoundException();
+        }
         petRepository.delete(petToDelete);
         return petToDelete;
     }
@@ -92,6 +94,10 @@ public class PetService {
         }
         if (existingPet.getAge() > 10) {
             throw new InvalidParameterException("You can't adopt a pet older than 10 years.");
+        }
+
+        if (newOwner == null) {
+            throw new ResourceNotFoundException();
         }
 
         if (newOwner.getPets().size() >= MAX_PETS_ALLOW) {
