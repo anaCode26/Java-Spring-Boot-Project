@@ -19,7 +19,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.test.util.AssertionErrors.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
@@ -43,7 +43,7 @@ public class FoodControllerIT {
     }
 
     @Test
-    public void getFoodWithPetPreferences_noFoodNoPets_returnsEmpty(){
+    public void getFoodWithPetPreferences_noFoodNoPets_returnsEmpty() {
         // Arrange
 
         //Act
@@ -53,7 +53,7 @@ public class FoodControllerIT {
     }
 
     @Test
-    public void getFoodWithPetPreferences_twoFoodsNoPets_returnsFoodsWith0Like(){
+    public void getFoodWithPetPreferences_twoFoodsNoPets_returnsFoodsWith0Like() {
         // Arrange
         Food food1 = new Food();
         food1.setName("Canin kitty");
@@ -75,15 +75,14 @@ public class FoodControllerIT {
         List<FoodPreference> preferences = foodController.getFoodWithPetPreferences();
         // Assert
         assertEquals(2, preferences.size());
-        assertEquals("Canin kitty", preferences.get(0).foodName());
-        assertEquals(0, preferences.get(0).quantity());
-        assertEquals("Canin Adult", preferences.get(1).foodName());
-        assertEquals(0, preferences.get(1).quantity());
+        assertTrue(Set.of("Canin kitty", "Canin Adult")
+                .containsAll(preferences.stream().map(FoodPreference::foodName).toList()));
+        assertTrue(preferences.stream().allMatch(preference -> preference.quantity() == 0));
 
     }
 
     @Test
-    public void getFoodWithPetPreferences_oneFoodAndOnePet_returnsFoodWith1Like(){
+    public void getFoodWithPetPreferences_oneFoodAndOnePet_returnsFoodWith1Like() {
         // Arrange
         Pet pet = new Pet();
         pet.setName("Panchito");
@@ -111,7 +110,7 @@ public class FoodControllerIT {
     }
 
     @Test
-    public void getFoodWithPetPreferences_twoFoodsAndOnePet_returnsFoodsLikes(){
+    public void getFoodWithPetPreferences_twoFoodsAndOnePet_returnsFoodsLikes() {
         // Arrange
         Pet pet = new Pet();
         pet.setName("rayis");
@@ -136,15 +135,17 @@ public class FoodControllerIT {
 
         foodRepository.save(savedFood1);
         foodRepository.save(savedFood2);
+        petRepository.save(savedPet);
 
         //Act
 
         List<FoodPreference> preferences = foodController.getFoodWithPetPreferences();
         // Assert
         assertEquals(2, preferences.size());
-        assertEquals("Royal kitty salmon", preferences.get(0).foodName());
+
+        assertTrue(Set.of("Royal kitty salmon", "Royal adult lamb")
+                .containsAll(preferences.stream().map(FoodPreference::foodName).toList()));
         assertEquals(1, preferences.get(0).quantity());
-        assertEquals("Royal adult lamb", preferences.get(1).foodName());
         assertEquals(0, preferences.get(1).quantity());
 
     }

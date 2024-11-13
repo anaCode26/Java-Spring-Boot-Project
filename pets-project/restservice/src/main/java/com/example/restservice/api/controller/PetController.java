@@ -38,7 +38,11 @@ public class PetController {
     public List<Pet> getPets(@RequestParam("name") Optional<String> name,
                                   @RequestParam("olderThan") Optional<Integer> olderThan,
                              @RequestParam("youngerThan") Optional<Integer> youngerThan,
-                             @RequestParam("food.isVegan") Optional<Boolean> likesVeganFood){
+                             @RequestParam("food.isVegan") Optional<Boolean> likesVeganFood,
+                             @RequestParam("offset") Integer offset,
+                             @RequestParam("pageSize") Integer pageSize){
+        if (null == offset) offset = 0;
+        if (null == pageSize) pageSize = 10;
         if(olderThan.isPresent() && olderThan.get() < 0){
             throw new InvalidParameterException("Negative number for olderThan are not allowed.");
         }

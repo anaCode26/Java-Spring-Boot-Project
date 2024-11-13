@@ -7,6 +7,7 @@ import com.example.restservice.api.repository.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,10 @@ public class FoodService {
     }
 
     public List<FoodPreference> getFoodsWithPetPreferences() {
-        return null;
+        List<Food> foods = foodRepository.fetchFoodWithPets();
+
+        return foods.stream()
+                .map(food -> new FoodPreference(food.getName(), food.getPets().size()))
+                .toList();
     }
 }
