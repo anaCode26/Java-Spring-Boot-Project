@@ -61,6 +61,12 @@ public class PetController {
         return petService.getPetsByFavFood(id);
     }
 
+    @GetMapping("/owner/{ownerId}/pet")
+    public List<Pet> getPetsByOwnerId(@PathVariable("ownerId") int id) { return petService.getPetsByOwnerId(id); }
+
+    @GetMapping("/owner/{ownerId}/quantityPets")
+    public Integer getQuantityPetsByOwnerId(@PathVariable("ownerId") int id) { return petService.getQuantityPetsByOwnerId(id); }
+
     @PostMapping("/pet")
     public Pet createPet(@RequestBody() Pet pet){
         return petService.createPet(pet);

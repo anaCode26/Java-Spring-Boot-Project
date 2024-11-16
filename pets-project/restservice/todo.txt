@@ -1,11 +1,15 @@
 TODO:
 1. Terminar endpoint de food preferences
-2. Agregar paginación al endpoint de /pet
+2.1 Hacer endpoint que devuelva cantidad de pets por owner
+    Hacer tests
+2.2 Hacer endpoint que devuelva pets de owner
+    Hacer tests
+3. Agregar paginación al endpoint de /pet
     El GET tiene que poder recibir un limit y offset
-3. Agregar paginación al resto
-4. Agregar entidad usuario con: mail, rol y contraseña
-5. Agregar login y registro
+4. Agregar paginación al resto
+5. Agregar entidad usuario con: mail, rol y contraseña
+6. Agregar login y registro
     hashing
     - aprender diferencia con cifrado/encriptacion
-6. Permitir solamente a los usuarios de rol = ADMIN editar los pets
+7. Permitir solamente a los usuarios de rol = ADMIN editar los pets
     middleware

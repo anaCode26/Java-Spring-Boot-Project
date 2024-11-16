@@ -126,9 +126,6 @@ class PetControllerIT {
 				() -> petController.updatePet(savedPet.getId(), savedPet));
 	}
 
-	// testear get 1 caso positiov y 1 negativo
-
-	// agregar test delete 1 caso negativo
 	@Test
 	void deletePet_existingPet_getsDeletedFromDb() {
 		// Arrange
@@ -273,4 +270,9 @@ class PetControllerIT {
 		assertThrows(ResourceNotFoundException.class,
 				() -> petController.updatePetOwner(pet.getId(), NON_EXISTING_OWNER_ID));
 	}
+
+//	@Test
+//	void getPetsOwner_oneOwnerTwoPets_returnTwo() {
+//		assertEquals(2,  petController.getQuantityPetsByOwnerId(1));
+//	}
 }

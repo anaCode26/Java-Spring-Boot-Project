@@ -47,6 +47,10 @@ public class PetService {
         return petRepository.getPetsByFavFoodId(id);
     }
 
+    public  List<Pet> getPetsByOwnerId(int id) { return petRepository.getPetsByOwnerId(id); }
+
+    public  Integer getQuantityPetsByOwnerId(int id) { return petRepository.getQuantityPetsOwnerId(id); }
+
     public Pet createPet(Pet pet){
         petRepository.save(pet);
         return pet;
