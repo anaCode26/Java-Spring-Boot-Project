@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PetRepository extends JpaRepository<Pet, Integer> {
     @Query("SELECT p from Pet p " +
-            " LEFT JOIN food f " +
+            " LEFT JOIN Food f " +
             " where " +
             " (:nameFilter is NULL OR p.name like :nameFilter) and " +
             " (:olderThan is NULL OR p.age > :olderThan) and " +

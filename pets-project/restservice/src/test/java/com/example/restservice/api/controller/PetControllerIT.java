@@ -271,8 +271,25 @@ class PetControllerIT {
 				() -> petController.updatePetOwner(pet.getId(), NON_EXISTING_OWNER_ID));
 	}
 
-//	@Test
-//	void getPetsOwner_oneOwnerTwoPets_returnTwo() {
-//		assertEquals(2,  petController.getQuantityPetsByOwnerId(1));
-//	}
+	@Test
+	void getPetsOwner_oneOwnerOnePet_returnOnePet() {
+		//Arrange
+		Owner owner = new Owner();
+		owner.setName("Anita");
+		Owner savedOwner = ownerRepository.save(owner);
+
+		Pet pet1 = new Pet();
+		pet1.setName("Manchis");
+		pet1.setAge(4);
+		pet1.setOwner(savedOwner);
+		petRepository.save(pet1);
+
+		// Act
+		petController.getPetsByOwnerId(savedOwner.getId());
+
+		//Assert
+
+
+
+	}
 }
