@@ -191,7 +191,6 @@ class PetControllerIT {
 		pet2.setOwner(savedOwner);
 		petRepository.save(pet2);
 
-
 		Pet pet3 = new Pet();
 		pet2.setName("Popa");
 		pet2.setAge(3);
@@ -272,24 +271,63 @@ class PetControllerIT {
 	}
 
 	@Test
-	void getPetsOwner_oneOwnerOnePet_returnOnePet() {
+	void getPetAmountByOwner_oneOwnerZeroPet_returnZeroPet() {
 		//Arrange
 		Owner owner = new Owner();
 		owner.setName("Anita");
 		Owner savedOwner = ownerRepository.save(owner);
 
-		Pet pet1 = new Pet();
-		pet1.setName("Manchis");
-		pet1.setAge(4);
-		pet1.setOwner(savedOwner);
-		petRepository.save(pet1);
+		// Act
+		int actualPetAmount = petController.getPetAmountByOwnerId(savedOwner.getId());
+
+		// Assert
+		assertEquals(0, actualPetAmount);
+	}
+
+	@Test
+	void getPetAmountByOwner_oneOwnerOnePet_returnOnePet() {
+		//Arrange
+		Owner owner = new Owner();
+		owner.setName("Anita");
+		Owner savedOwner = ownerRepository.save(owner);
+
+		Pet pet = new Pet();
+		pet.setName("Manchis");
+		pet.setAge(4);
+		pet.setOwner(savedOwner);
+		petRepository.save(pet);
 
 		// Act
-		petController.getPetsByOwnerId(savedOwner.getId());
+		int actualPetAmount = petController.getPetAmountByOwnerId(savedOwner.getId());
 
-		//Assert
+		// Assert
+		assertEquals(1, actualPetAmount);
+	}
+
+	@Test
+	void getPetAmountByOwner_oneOwnerTwoPets_returnTwoPet() {
+		//Arrange
+		Owner owner = new Owner();
+		owner.setName("Anita");
+		Owner savedOwner = ownerRepository.save(owner);
+
+		Pet pet = new Pet();
+		pet.setName("Manchis");
+		pet.setAge(4);
+		pet.setOwner(savedOwner);
+		petRepository.save(pet);
+
+		Pet pet2 = new Pet();
+		pet2.setName("Rayis");
+		pet2.setAge(4);
+		pet2.setOwner(savedOwner);
+		petRepository.save(pet2);
+
+		// Act
+		int actualPetAmount = petController.getPetAmountByOwnerId(savedOwner.getId());
 
 
-
+		// Assert
+		assertEquals(2, actualPetAmount);
 	}
 }

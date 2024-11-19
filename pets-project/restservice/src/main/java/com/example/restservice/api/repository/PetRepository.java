@@ -28,5 +28,5 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
     List<Pet> getPetsByOwnerId(@Param("ownerId") Integer ownerId);
 
     @Query("SELECT COUNT(p.id) FROM Pet p WHERE p.owner.id = :ownerId")
-    Integer getQuantityPetsOwnerId(@Param("ownerId") Integer ownerId);
+    Integer getPetAmountByOwnerId(@Param("ownerId") Integer ownerId);
 }

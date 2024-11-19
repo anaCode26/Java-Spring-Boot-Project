@@ -1,9 +1,9 @@
 TODO:
-1. Terminar endpoint de food preferences
-2.1 Hacer endpoint que devuelva cantidad de pets por owner
-    Hacer tests
-2.2 Hacer endpoint que devuelva pets de owner
-    Hacer tests
+1. Terminar endpoint de food preferences --> x
+2.1 Hacer endpoint que devuelva cantidad de pets por owner --> x
+    Hacer tests --> x
+2.2 Hacer endpoint que devuelva pets de owner --> x
+    Hacer tests --> pending
 3. Agregar paginación al endpoint de /pet
     El GET tiene que poder recibir un limit y offset
 4. Agregar paginación al resto

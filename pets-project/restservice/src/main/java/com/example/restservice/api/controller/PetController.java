@@ -62,10 +62,14 @@ public class PetController {
     }
 
     @GetMapping("/owner/{ownerId}/pet")
-    public List<Pet> getPetsByOwnerId(@PathVariable("ownerId") int id) { return petService.getPetsByOwnerId(id); }
+    public List<Pet> getPetsByOwnerId(@PathVariable("ownerId") int id) {
+        return petService.getPetsByOwnerId(id);
+    }
 
     @GetMapping("/owner/{ownerId}/quantityPets")
-    public Integer getQuantityPetsByOwnerId(@PathVariable("ownerId") int id) { return petService.getQuantityPetsByOwnerId(id); }
+    public Integer getPetAmountByOwnerId(@PathVariable("ownerId") int id) {
+        return petService.getPetAmountByOwnerId(id);
+    }
 
     @PostMapping("/pet")
     public Pet createPet(@RequestBody() Pet pet){
