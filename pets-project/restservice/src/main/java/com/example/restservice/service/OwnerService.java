@@ -5,6 +5,7 @@ import com.example.restservice.api.ResourceNotFoundException;
 import com.example.restservice.api.model.Owner;
 import com.example.restservice.api.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +28,8 @@ public class OwnerService {
         return owner;
     }
 
-    public List<Owner> getOwner(String name) {
-        return ownerRepository.getOwner(name);
+    public List<Owner> getOwner(String name, Integer offset, Integer limit) {
+        return ownerRepository.getOwner(name, PageRequest.of((offset / limit), limit));
     }
 
 

@@ -39,10 +39,8 @@ public class PetController {
                                   @RequestParam("olderThan") Optional<Integer> olderThan,
                              @RequestParam("youngerThan") Optional<Integer> youngerThan,
                              @RequestParam("food.isVegan") Optional<Boolean> likesVeganFood,
-                             @RequestParam("offset") Integer offset,
-                             @RequestParam("pageSize") Integer pageSize){
-        if (null == offset) offset = 0;
-        if (null == pageSize) pageSize = 10;
+                             @RequestParam(value = "offset", defaultValue = "0") Integer offset,
+                             @RequestParam(value = "limit", defaultValue = "5") Integer limit){
         if(olderThan.isPresent() && olderThan.get() < 0){
             throw new InvalidParameterException("Negative number for olderThan are not allowed.");
         }
@@ -53,7 +51,7 @@ public class PetController {
             throw new InvalidParameterException("OlderThan must be less than youngerThan.");
         }
 
-        return petService.getPets(name, olderThan, youngerThan, likesVeganFood);
+        return petService.getPets(name, olderThan, youngerThan, likesVeganFood, offset, limit);
     }
 
     @GetMapping("/food/{foodId}/pet")

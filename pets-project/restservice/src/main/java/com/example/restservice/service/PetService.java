@@ -8,6 +8,7 @@ import com.example.restservice.api.repository.FoodRepository;
 import com.example.restservice.api.repository.OwnerRepository;
 import com.example.restservice.api.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -35,12 +36,16 @@ public class PetService {
         return owner.orElse(null);
     }
 
-    public List<Pet> getPets(Optional<String> name, Optional<Integer> olderThan, Optional<Integer> youngerThan, Optional<Boolean> likesVeganFood) {
+    public List<Pet> getPets(Optional<String> name, Optional<Integer> olderThan, Optional<Integer> youngerThan,
+                             Optional<Boolean> likesVeganFood, Integer offset, Integer limit) {
+        // TODO: no devolver.toList()
         return petRepository.getPet(
                 name.orElse(null),
                 olderThan.orElse(null),
                 youngerThan.orElse(null),
-                likesVeganFood.orElse(null));
+                likesVeganFood.orElse(null),
+                PageRequest.of((offset / limit), limit))
+                .toList();
     }
 
     public List<Pet> getPetsByFavFood(int id) {

@@ -4,8 +4,8 @@ TODO:
     Hacer tests --> x
 2.2 Hacer endpoint que devuelva pets de owner --> x
     Hacer tests --> pending
-3. Agregar paginación al endpoint de /pet
-    El GET tiene que poder recibir un limit y offset
+3. Agregar paginación al endpoint de /pet --> x
+    El GET tiene que poder recibir un limit y offset --> x
 4. Agregar paginación al resto
 5. Agregar entidad usuario con: mail, rol y contraseña
 6. Agregar login y registro
