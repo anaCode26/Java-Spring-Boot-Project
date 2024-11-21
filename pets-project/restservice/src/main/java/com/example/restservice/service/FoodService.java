@@ -5,9 +5,10 @@ import com.example.restservice.api.dto.FoodPreference;
 import com.example.restservice.api.model.Food;
 import com.example.restservice.api.repository.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +23,8 @@ public class FoodService {
         return food.orElse(null);
     }
 
-    public List<Food> getFoods(String name) {
-        return foodRepository.getFood(name);
+    public List<Food> getFoods(String name, Integer offset, Integer limit) {
+        return foodRepository.getFood(name, PageRequest.of((offset / limit), limit)).toList();
     }
 
     public Food createFood(Food food) {

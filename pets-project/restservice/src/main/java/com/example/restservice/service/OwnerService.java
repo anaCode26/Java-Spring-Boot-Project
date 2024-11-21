@@ -29,7 +29,7 @@ public class OwnerService {
     }
 
     public List<Owner> getOwner(String name, Integer offset, Integer limit) {
-        return ownerRepository.getOwner(name, PageRequest.of((offset / limit), limit));
+        return ownerRepository.getOwner(name, PageRequest.of((offset / limit), limit)).toList();
     }
 
 

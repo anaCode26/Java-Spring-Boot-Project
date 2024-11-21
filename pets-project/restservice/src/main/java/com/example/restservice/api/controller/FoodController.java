@@ -18,8 +18,10 @@ public class FoodController {
     public Food getFoodById(@PathVariable("id") int id) { return foodService.getFoodById(id); }
 
     @GetMapping("/food")
-    public List<Food> getFood(@RequestParam("name") String name) {
-        return foodService.getFoods(name);
+    public List<Food> getFood(@RequestParam("name") String name,
+                             @RequestParam(value = "offset", defaultValue = "0") Integer offset,
+                              @RequestParam(value = "limit", defaultValue = "5") Integer limit) {
+        return foodService.getFoods(name, offset, limit);
     }
 
     @PostMapping("/food")

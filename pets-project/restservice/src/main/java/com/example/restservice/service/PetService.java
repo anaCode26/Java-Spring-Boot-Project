@@ -44,8 +44,7 @@ public class PetService {
                 olderThan.orElse(null),
                 youngerThan.orElse(null),
                 likesVeganFood.orElse(null),
-                PageRequest.of((offset / limit), limit))
-                .toList();
+                PageRequest.of((offset / limit), limit)).toList();
     }
 
     public List<Pet> getPetsByFavFood(int id) {
