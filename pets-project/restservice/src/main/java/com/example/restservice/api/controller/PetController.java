@@ -6,13 +6,10 @@ import com.example.restservice.api.model.Owner;
 import com.example.restservice.api.model.Pet;
 import com.example.restservice.service.OwnerService;
 import com.example.restservice.service.PetService;
-import com.example.restservice.utils.validation;
-import org.hibernate.engine.jdbc.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 
@@ -36,7 +33,7 @@ public class PetController {
 
     @GetMapping("/pet")
     public List<Pet> getPets(@RequestParam("name") Optional<String> name,
-                                  @RequestParam("olderThan") Optional<Integer> olderThan,
+                             @RequestParam("olderThan") Optional<Integer> olderThan,
                              @RequestParam("youngerThan") Optional<Integer> youngerThan,
                              @RequestParam("food.isVegan") Optional<Boolean> likesVeganFood,
                              @RequestParam(value = "offset", defaultValue = "0") Integer offset,

@@ -3,9 +3,17 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>975</IntrospectionStateNumber>
+      <Grants>1||-9223372036854775808|c|G
+1||10|c|G
+1||10|C|G
+1||10|T|G
+4||-9223372036854775808|c|G
+4||10|c|G
+4||10|C|G
+4||10|T|G</Grants>
+      <IntrospectionStateNumber>1406</IntrospectionStateNumber>
       <ServerVersion>17.0</ServerVersion>
-      <StartupTime>1731784503</StartupTime>
+      <StartupTime>1732288667</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1400,7 +1408,7 @@ false posixrules
 13219||10|C|G
 13219||-9223372036854775808|U|G
 13219||10|U|G</Grants>
-      <IntrospectionStateNumber>975</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1406</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4822,204 +4830,278 @@ false posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>975</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-11-16.19:19:27</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>1406</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-11-22.15:32:27</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>532</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <sequence id="265" parent="264" name="food_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>16840</ObjectId>
+      <ObjectId>17809</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>970</StateNumber>
+      <StateNumber>1392</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="266" parent="264" name="owner_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>16848</ObjectId>
+      <ObjectId>17817</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>971</StateNumber>
+      <StateNumber>1393</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="267" parent="264" name="pet_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>16856</ObjectId>
+      <ObjectId>17825</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>972</StateNumber>
+      <StateNumber>1394</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="268" parent="264" name="food">
-      <ObjectId>16841</ObjectId>
-      <StateNumber>973</StateNumber>
+    <sequence id="268" parent="264" name="users_id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>17841</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1403</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="269" parent="264" name="food">
+      <ObjectId>17810</ObjectId>
+      <StateNumber>1395</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="269" parent="264" name="owner">
-      <ObjectId>16849</ObjectId>
-      <StateNumber>974</StateNumber>
+    <table id="270" parent="264" name="owner">
+      <ObjectId>17818</ObjectId>
+      <StateNumber>1396</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="270" parent="264" name="pet">
-      <ObjectId>16857</ObjectId>
-      <StateNumber>973</StateNumber>
+    <table id="271" parent="264" name="pet">
+      <ObjectId>17826</ObjectId>
+      <StateNumber>1395</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="271" parent="268" name="id">
+    <table id="272" parent="264" name="users">
+      <ObjectId>17842</ObjectId>
+      <StateNumber>1403</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="273" parent="269" name="id">
       <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>970</StateNumber>
-      <SequenceId>16840</SequenceId>
+      <StateNumber>1392</StateNumber>
+      <SequenceId>17809</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="272" parent="268" name="brand">
+    <column id="274" parent="269" name="brand">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
-      <StateNumber>970</StateNumber>
+      <StateNumber>1392</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="273" parent="268" name="is_vegan">
+    <column id="275" parent="269" name="is_vegan">
       <DasType>boolean|0s</DasType>
       <Position>3</Position>
-      <StateNumber>970</StateNumber>
+      <StateNumber>1392</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="274" parent="268" name="name">
+    <column id="276" parent="269" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
-      <StateNumber>970</StateNumber>
+      <StateNumber>1392</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="275" parent="268" name="price">
+    <column id="277" parent="269" name="price">
       <DasType>double precision|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>970</StateNumber>
+      <StateNumber>1392</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <index id="276" parent="268" name="food_pkey">
+    <index id="278" parent="269" name="food_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16846</ObjectId>
+      <ObjectId>17815</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>970</StateNumber>
+      <StateNumber>1392</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="277" parent="268" name="food_pkey">
+    <key id="279" parent="269" name="food_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16847</ObjectId>
+      <ObjectId>17816</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>970</StateNumber>
-      <UnderlyingIndexId>16846</UnderlyingIndexId>
+      <StateNumber>1392</StateNumber>
+      <UnderlyingIndexId>17815</UnderlyingIndexId>
     </key>
-    <column id="278" parent="269" name="id">
+    <column id="280" parent="270" name="id">
       <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>971</StateNumber>
-      <SequenceId>16848</SequenceId>
+      <StateNumber>1393</StateNumber>
+      <SequenceId>17817</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="279" parent="269" name="address">
+    <column id="281" parent="270" name="address">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
-      <StateNumber>971</StateNumber>
+      <StateNumber>1393</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="280" parent="269" name="name">
+    <column id="282" parent="270" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>971</StateNumber>
+      <StateNumber>1393</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="281" parent="269" name="owner_pkey">
+    <index id="283" parent="270" name="owner_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16854</ObjectId>
+      <ObjectId>17823</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>971</StateNumber>
+      <StateNumber>1393</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="282" parent="269" name="owner_pkey">
+    <key id="284" parent="270" name="owner_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16855</ObjectId>
+      <ObjectId>17824</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>971</StateNumber>
-      <UnderlyingIndexId>16854</UnderlyingIndexId>
+      <StateNumber>1393</StateNumber>
+      <UnderlyingIndexId>17823</UnderlyingIndexId>
     </key>
-    <column id="283" parent="270" name="id">
+    <column id="285" parent="271" name="id">
       <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>972</StateNumber>
-      <SequenceId>16856</SequenceId>
+      <StateNumber>1394</StateNumber>
+      <SequenceId>17825</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="284" parent="270" name="age">
+    <column id="286" parent="271" name="age">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>972</StateNumber>
+      <StateNumber>1394</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="285" parent="270" name="name">
+    <column id="287" parent="271" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>972</StateNumber>
+      <StateNumber>1394</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="286" parent="270" name="food_id">
+    <column id="288" parent="271" name="food_id">
       <DasType>integer|0s</DasType>
       <Position>4</Position>
-      <StateNumber>972</StateNumber>
+      <StateNumber>1394</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="287" parent="270" name="owner_id">
+    <column id="289" parent="271" name="owner_id">
       <DasType>integer|0s</DasType>
       <Position>5</Position>
-      <StateNumber>972</StateNumber>
+      <StateNumber>1394</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="288" parent="270" name="fk6d3mgbnqk46vhicyr5w6kddmk">
+    <foreign-key id="290" parent="271" name="fk6d3mgbnqk46vhicyr5w6kddmk">
       <ColNames>food_id</ColNames>
-      <ObjectId>16862</ObjectId>
-      <StateNumber>973</StateNumber>
+      <ObjectId>17831</ObjectId>
+      <StateNumber>1395</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16841</RefTableId>
+      <RefTableId>17810</RefTableId>
     </foreign-key>
-    <foreign-key id="289" parent="270" name="fk7qfti9yba86tgfe9oobeqxfxg">
+    <foreign-key id="291" parent="271" name="fk7qfti9yba86tgfe9oobeqxfxg">
       <ColNames>owner_id</ColNames>
-      <ObjectId>16867</ObjectId>
-      <StateNumber>974</StateNumber>
+      <ObjectId>17836</ObjectId>
+      <StateNumber>1396</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16849</RefTableId>
+      <RefTableId>17818</RefTableId>
     </foreign-key>
-    <index id="290" parent="270" name="pet_pkey">
+    <index id="292" parent="271" name="pet_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16860</ObjectId>
+      <ObjectId>17829</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>972</StateNumber>
+      <StateNumber>1394</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="291" parent="270" name="pet_pkey">
+    <key id="293" parent="271" name="pet_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16861</ObjectId>
+      <ObjectId>17830</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>972</StateNumber>
-      <UnderlyingIndexId>16860</UnderlyingIndexId>
+      <StateNumber>1394</StateNumber>
+      <UnderlyingIndexId>17829</UnderlyingIndexId>
+    </key>
+    <column id="294" parent="272" name="id">
+      <DasType>integer|0s</DasType>
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1403</StateNumber>
+      <SequenceId>17841</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="295" parent="272" name="email">
+      <DasType>varchar(45)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1403</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="296" parent="272" name="password">
+      <DasType>varchar(64)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1403</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="297" parent="272" name="role">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>1403</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="298" parent="272" name="users_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17845</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1403</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="299" parent="272" name="uk6dotkott2kjsp8vw4d0m25fb7">
+      <ColNames>email</ColNames>
+      <ObjectId>17847</ObjectId>
+      <StateNumber>1405</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="300" parent="272" name="users_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17846</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1403</StateNumber>
+      <UnderlyingIndexId>17845</UnderlyingIndexId>
+    </key>
+    <key id="301" parent="272" name="uk6dotkott2kjsp8vw4d0m25fb7">
+      <ObjectId>17848</ObjectId>
+      <StateNumber>1405</StateNumber>
+      <UnderlyingIndexId>17847</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

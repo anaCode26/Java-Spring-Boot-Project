@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface FoodRepository extends JpaRepository<Food, Integer> {
-    @Query("SELECT f from Food f " +
+    @Query(value = "SELECT f from Food f " +
             " where " +
             " (:nameFilter is NULL OR f.name like :nameFilter)")
     Page<Food> getFood(@Param("nameFilter") String name, Pageable pageable);

@@ -23,7 +23,7 @@ public class FoodService {
         return food.orElse(null);
     }
 
-    public List<Food> getFoods(String name, Integer offset, Integer limit) {
+    public List<Food> getFood(String name, Integer offset, Integer limit) {
         return foodRepository.getFood(name, PageRequest.of((offset / limit), limit)).toList();
     }
 

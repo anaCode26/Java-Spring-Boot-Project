@@ -19,9 +19,9 @@ public class FoodController {
 
     @GetMapping("/food")
     public List<Food> getFood(@RequestParam("name") String name,
-                             @RequestParam(value = "offset", defaultValue = "0") Integer offset,
+                              @RequestParam(value = "offset", defaultValue = "0") Integer offset,
                               @RequestParam(value = "limit", defaultValue = "5") Integer limit) {
-        return foodService.getFoods(name, offset, limit);
+        return foodService.getFood(name, offset, limit);
     }
 
     @PostMapping("/food")
