@@ -1,9 +1,9 @@
 package com.example.restservice.service;
 
-import com.example.restservice.api.InvalidParameterException;
-import com.example.restservice.api.ResourceNotFoundException;
-import com.example.restservice.api.model.Owner;
-import com.example.restservice.api.repository.OwnerRepository;
+import com.example.restservice.pet.InvalidParameterException;
+import com.example.restservice.pet.ResourceNotFoundException;
+import com.example.restservice.pet.model.Owner;
+import com.example.restservice.pet.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

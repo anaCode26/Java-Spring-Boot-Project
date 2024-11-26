@@ -1,6 +1,6 @@
-package com.example.restservice.api.repository;
+package com.example.restservice.pet.repository;
 
-import com.example.restservice.api.model.Owner;
+import com.example.restservice.pet.model.Owner;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

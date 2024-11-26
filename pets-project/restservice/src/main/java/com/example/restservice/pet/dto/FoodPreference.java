@@ -1,4 +1,4 @@
-package com.example.restservice.api.dto;
+package com.example.restservice.pet.dto;
 
 public record FoodPreference(
         String foodName,

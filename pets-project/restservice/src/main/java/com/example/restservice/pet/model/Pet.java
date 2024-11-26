@@ -1,4 +1,4 @@
-package com.example.restservice.api.model;
+package com.example.restservice.pet.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

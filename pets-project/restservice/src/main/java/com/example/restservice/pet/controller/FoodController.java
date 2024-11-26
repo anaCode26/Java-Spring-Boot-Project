@@ -1,7 +1,7 @@
-package com.example.restservice.api.controller;
+package com.example.restservice.pet.controller;
 
-import com.example.restservice.api.dto.FoodPreference;
-import com.example.restservice.api.model.Food;
+import com.example.restservice.pet.dto.FoodPreference;
+import com.example.restservice.pet.model.Food;
 import com.example.restservice.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class FoodController {
 
     @Autowired

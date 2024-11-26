@@ -13,3 +13,34 @@ TODO:
     - aprender diferencia con cifrado/encriptacion
 7. Permitir solamente a los usuarios de rol = ADMIN editar los pets
     middleware
+
+
+ // Buscar que es un ENUM
+
+ // Metodo de register recibe email y pass y lo guarda
+ // Crear un rol que este por defecto, ENUM(roles) asignar el que tenga mas sentido
+
+//Input
+    -ingreso email
+    -ingreso password
+    -hashear contrasenia antes de guardarla
+    -guarda
+
+//Validaciones / register
+   - hashear contrasenia antes de guardarla
+   - validar que el mail tenga formato valido
+   - validar que el mail ingresado no exista
+   - validar que la contrasenia tenga al menos 8 caracteres
+   - validar que la contrasenia sea alfanumerica
+
+
+//login
+   -input: email y password --> recibo email y password, y verifica si existe un usuario con ese mail y para ese usuario
+   que coincida esa password y si es asi, genero un token(string random) y lo guardo en el usuario y lo devuelvo.
+   -validar que en el post de pet el token sea valido, que no pueda hacer un post si no esta logueado.
+   -hacer que se validen todos los endpoints con un middleware.
+   -validar que solo ciertos roles puedan hacer ciertas cosas (con other middleware)
+   -en el registro y login no valido que voy a estar logueado.
+   -usar JWT en lugar de token
+
+

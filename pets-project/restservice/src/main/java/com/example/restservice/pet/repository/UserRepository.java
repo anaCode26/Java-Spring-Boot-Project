@@ -1,6 +1,6 @@
-package com.example.restservice.api.repository;
+package com.example.restservice.pet.repository;
 
-import com.example.restservice.api.model.User;
+import com.example.restservice.security.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

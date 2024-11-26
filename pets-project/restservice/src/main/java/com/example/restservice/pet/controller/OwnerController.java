@@ -1,6 +1,6 @@
-package com.example.restservice.api.controller;
+package com.example.restservice.pet.controller;
 
-import com.example.restservice.api.model.Owner;
+import com.example.restservice.pet.model.Owner;
 import com.example.restservice.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class OwnerController {
 
     @Autowired

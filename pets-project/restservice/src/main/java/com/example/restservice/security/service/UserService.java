@@ -1,13 +1,13 @@
-package com.example.restservice.service;
+package com.example.restservice.security.service;
 
-import com.example.restservice.api.model.User;
-import com.example.restservice.api.repository.UserRepository;
+import com.example.restservice.security.model.User;
+import com.example.restservice.pet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserService{
 
     @Autowired
     private UserRepository userRepository;

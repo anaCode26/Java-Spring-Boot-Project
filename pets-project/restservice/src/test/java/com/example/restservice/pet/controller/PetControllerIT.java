@@ -1,25 +1,21 @@
-package com.example.restservice.api.controller;
+package com.example.restservice.pet.controller;
 
-import com.example.restservice.api.InvalidParameterException;
-import com.example.restservice.api.ResourceNotFoundException;
-import com.example.restservice.api.model.Owner;
-import com.example.restservice.api.model.Pet;
-import com.example.restservice.api.repository.OwnerRepository;
-import com.example.restservice.api.repository.PetRepository;
+import com.example.restservice.pet.InvalidParameterException;
+import com.example.restservice.pet.ResourceNotFoundException;
+import com.example.restservice.pet.model.Owner;
+import com.example.restservice.pet.model.Pet;
+import com.example.restservice.pet.repository.OwnerRepository;
+import com.example.restservice.pet.repository.PetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
-import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;

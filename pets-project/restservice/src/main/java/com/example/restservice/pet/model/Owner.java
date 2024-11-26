@@ -1,7 +1,6 @@
-package com.example.restservice.api.model;
+package com.example.restservice.pet.model;
 
 import jakarta.persistence.*;
-import org.hibernate.engine.jdbc.Size;
 
 import java.util.Set;
 

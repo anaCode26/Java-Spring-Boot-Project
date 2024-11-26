@@ -1,10 +1,10 @@
-package com.example.restservice.api.controller;
+package com.example.restservice.pet.controller;
 
-import com.example.restservice.api.dto.FoodPreference;
-import com.example.restservice.api.model.Food;
-import com.example.restservice.api.model.Pet;
-import com.example.restservice.api.repository.FoodRepository;
-import com.example.restservice.api.repository.PetRepository;
+import com.example.restservice.pet.dto.FoodPreference;
+import com.example.restservice.pet.model.Food;
+import com.example.restservice.pet.model.Pet;
+import com.example.restservice.pet.repository.FoodRepository;
+import com.example.restservice.pet.repository.PetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
