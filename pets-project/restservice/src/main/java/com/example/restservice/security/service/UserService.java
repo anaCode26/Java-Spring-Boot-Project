@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService{
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -15,14 +15,12 @@ public class UserService{
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public User saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
-
-    public boolean authenticate(String email, String password) {
-        User user = userRepository.findByEmail(email);
-        return user != null && passwordEncoder.matches(password, user.getPassword());
+    public void registerUser(String email, String password) {
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setRole("USER");
+        userRepository.save(user);
     }
 
 }

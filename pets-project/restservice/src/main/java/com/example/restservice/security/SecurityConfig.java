@@ -1,5 +1,6 @@
 package com.example.restservice.security;
 
+import com.example.restservice.security.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
+
+    private final CustomUserDetailsService customUserDetailsService;
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
+    }
 
     @Bean
     BCryptPasswordEncoder passwordEncoder(){
