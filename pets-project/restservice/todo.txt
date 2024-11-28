@@ -8,9 +8,10 @@ TODO:
     El GET tiene que poder recibir un limit y offset --> x
 4. Agregar paginación al resto
 5. Agregar entidad usuario con: mail, rol y contraseña --> x
-6. Agregar login y registro
+6. Agregar login y registro --> x
     hashing
     - aprender diferencia con cifrado/encriptacion
+6.5. hacer que valide los endpoints privados
 7. Permitir solamente a los usuarios de rol = ADMIN editar los pets
     middleware
 
