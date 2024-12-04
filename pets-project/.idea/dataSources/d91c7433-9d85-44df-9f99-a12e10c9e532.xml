@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="postgres@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
       <IntrospectionStateNumber>1416</IntrospectionStateNumber>
@@ -4829,35 +4829,35 @@ false posixrules
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <sequence id="265" parent="264" name="food_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>17809</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1392</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="266" parent="264" name="owner_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>17817</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1393</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="267" parent="264" name="pet_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>17825</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1394</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="268" parent="264" name="users_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>17841</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1403</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <table id="269" parent="264" name="food">
@@ -4885,37 +4885,37 @@ false posixrules
       <OwnerName>postgres</OwnerName>
     </table>
     <column id="273" parent="269" name="id">
-      <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1392</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>17809</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="274" parent="269" name="brand">
-      <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>1392</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="275" parent="269" name="is_vegan">
-      <DasType>boolean|0s</DasType>
       <Position>3</Position>
       <StateNumber>1392</StateNumber>
+      <StoredType>boolean|0s</StoredType>
       <TypeId>16</TypeId>
     </column>
     <column id="276" parent="269" name="name">
-      <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
       <StateNumber>1392</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="277" parent="269" name="price">
-      <DasType>double precision|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1392</StateNumber>
+      <StoredType>double precision|0s</StoredType>
       <TypeId>701</TypeId>
     </column>
     <index id="278" parent="269" name="food_pkey">
@@ -4935,24 +4935,24 @@ false posixrules
       <UnderlyingIndexId>17815</UnderlyingIndexId>
     </key>
     <column id="280" parent="270" name="id">
-      <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1393</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>17817</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="281" parent="270" name="address">
-      <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>1393</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="282" parent="270" name="name">
-      <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
       <StateNumber>1393</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <index id="283" parent="270" name="owner_pkey">
@@ -4972,37 +4972,37 @@ false posixrules
       <UnderlyingIndexId>17823</UnderlyingIndexId>
     </key>
     <column id="285" parent="271" name="id">
-      <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1394</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>17825</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="286" parent="271" name="age">
-      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1394</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="287" parent="271" name="name">
-      <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
       <StateNumber>1394</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="288" parent="271" name="food_id">
-      <DasType>integer|0s</DasType>
       <Position>4</Position>
       <StateNumber>1394</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="289" parent="271" name="owner_id">
-      <DasType>integer|0s</DasType>
       <Position>5</Position>
       <StateNumber>1394</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <foreign-key id="290" parent="271" name="fk6d3mgbnqk46vhicyr5w6kddmk">
@@ -5036,32 +5036,32 @@ false posixrules
       <UnderlyingIndexId>17829</UnderlyingIndexId>
     </key>
     <column id="294" parent="272" name="id">
-      <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1403</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>17841</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="295" parent="272" name="email">
-      <DasType>varchar(45)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1403</StateNumber>
+      <StoredType>varchar(45)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="296" parent="272" name="password">
-      <DasType>varchar(64)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1403</StateNumber>
+      <StoredType>varchar(64)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="297" parent="272" name="role">
-      <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
       <StateNumber>1403</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <index id="298" parent="272" name="users_pkey">
