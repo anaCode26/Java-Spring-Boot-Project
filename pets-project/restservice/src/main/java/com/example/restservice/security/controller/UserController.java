@@ -30,12 +30,17 @@ public class UserController {
         return new ResponseEntity<>("User registered success!", HttpStatus.OK);
     }
 
+//    @PostMapping("/public/user/login")
+//    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
+//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+//                loginDto.email(),loginDto.password()));
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        return new ResponseEntity<>("User signed success!", HttpStatus.OK);
+//    }
+
     @PostMapping("/public/user/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                loginDto.email(),loginDto.password()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<>("User signed success!", HttpStatus.OK);
+    public String login(@RequestBody User user) {
+       return userService.loginUser(user);
     }
 
 }
