@@ -2,6 +2,7 @@ package com.example.restservice.security.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -39,14 +40,14 @@ public class JWTService {
                 .add(claims)
                 .subject(email)
                 .issuedAt(Date.from(Instant.now()))
-                .expiration(new Date(System.currentTimeMillis() + 60 * 60 * 30 ))
+                .expiration(new Date(System.currentTimeMillis() + 60 * 60 * 30))
                 .and()
                 .signWith(getKey())
                 .compact();
     }
 
     private SecretKey getKey() {
-        byte[] keyBytes = Base64.getEncoder().encode(secretKey.getBytes());
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
