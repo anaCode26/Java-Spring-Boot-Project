@@ -1,18 +1,19 @@
 package com.example.restservice.security.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 
 @Service
@@ -44,12 +45,38 @@ public class JWTService {
                 .compact();
     }
 
-    private Key getKey() {
+    private SecretKey getKey() {
         byte[] keyBytes = Base64.getEncoder().encode(secretKey.getBytes());
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
     public String extractUserName(String jwtToken) {
-        return "";
+        return extractClaim(jwtToken, Claims::getSubject);
+    }
+
+    public <T> T extractClaim(String jwtToken, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(jwtToken);
+        return claimsResolver.apply(claims);
+    }
+
+    public Claims extractAllClaims(String jwtToken) {
+        return Jwts.parser()
+                .verifyWith(getKey())
+                .build().parseSignedClaims(jwtToken)
+                .getPayload();
+
+    }
+
+    public boolean validateToken(String jwtToken, UserDetails userDetails) {
+        final String email = extractUserName(jwtToken);
+        return (email.equals(userDetails.getUsername()) && !isTokenExpired(jwtToken));
+    }
+
+    private Boolean isTokenExpired(String jwtToken) {
+        return extractExpiration(jwtToken).before(new Date());
+    }
+
+    private Date extractExpiration(String jwtToken) {
+        return extractClaim(jwtToken, Claims::getExpiration);
     }
 }
