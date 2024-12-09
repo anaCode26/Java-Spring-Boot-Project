@@ -35,7 +35,7 @@ public class UserController {
         cookie.setSecure(false);
         cookie.setPath("/api");
         response.addCookie(cookie);
-        return ResponseEntity.ok("email: " + loginDto.email());
+        return ResponseEntity.ok(token);
 
     }
 
