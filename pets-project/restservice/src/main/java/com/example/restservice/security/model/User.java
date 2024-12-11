@@ -1,7 +1,8 @@
 package com.example.restservice.security.model;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -10,19 +11,22 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @Column(nullable = false, unique = true, length = 45)
-    String email;
-    String role;
+    private String email;
+
+    @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles = new ArrayList<>();
 
     @Column(nullable = false, length = 64)
-    String password;
+    private String password;
 
-    public User(int id, String email, String role, String password) {
-        this.id = id;
+    public User( String email, String password, List<Role> roles) {
         this.email = email;
-        this.role = role;
+        this.roles = roles;
         this.password = password;
     }
 
@@ -37,9 +41,9 @@ public class User {
         this.email = email;
     }
 
-    public String getRole() { return role;}
+    public List<Role> getRole() { return roles;}
 
-    public void setRole(String role) { this.role = role;}
+    public void setRole(List<Role> roles) { this.roles = roles;}
 
     public String getPassword() {
         return password;
