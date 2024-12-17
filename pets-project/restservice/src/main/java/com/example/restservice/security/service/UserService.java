@@ -1,7 +1,9 @@
 package com.example.restservice.security.service;
 
 import com.example.restservice.security.dto.LoginDto;
+import com.example.restservice.security.model.Role;
 import com.example.restservice.security.model.User;
+import com.example.restservice.security.repository.RoleRepository;
 import com.example.restservice.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,6 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -26,9 +31,14 @@ public class UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     public void registerUser(User user) {
         user.setEmail(user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Optional<Role> role = roleRepository.findByName("USER");
+        user.setRole(Arrays.asList(role.get()));
         userRepository.save(user);
     }
 
