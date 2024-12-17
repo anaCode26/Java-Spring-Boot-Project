@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>759</IntrospectionStateNumber>
+      <IntrospectionStateNumber>796</IntrospectionStateNumber>
       <ServerVersion>17.2</ServerVersion>
-      <StartupTime>1733408118</StartupTime>
+      <StartupTime>1734460037</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1400,7 +1400,7 @@ false posixrules
 13219||10|C|G
 13219||-9223372036854775808|U|G
 13219||10|U|G</Grants>
-      <IntrospectionStateNumber>759</IntrospectionStateNumber>
+      <IntrospectionStateNumber>796</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4822,8 +4822,8 @@ false posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>759</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-12-05.16:44:44</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>796</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-12-17.18:50:53</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>532</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4852,7 +4852,15 @@ false posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="268" parent="264" name="users_id_seq">
+    <sequence id="268" parent="264" name="roles_id_seq">
+      <ObjectId>16444</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>792</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="269" parent="264" name="users_id_seq">
       <ObjectId>16406</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -4860,31 +4868,43 @@ false posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="269" parent="264" name="food">
+    <table id="270" parent="264" name="food">
       <ObjectId>16385</ObjectId>
       <StateNumber>745</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="270" parent="264" name="owner">
+    <table id="271" parent="264" name="owner">
       <ObjectId>16393</ObjectId>
       <StateNumber>746</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="271" parent="264" name="pet">
+    <table id="272" parent="264" name="pet">
       <ObjectId>16401</ObjectId>
       <StateNumber>745</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="272" parent="264" name="users">
-      <ObjectId>16407</ObjectId>
-      <StateNumber>742</StateNumber>
+    <table id="273" parent="264" name="roles">
+      <ObjectId>16445</ObjectId>
+      <StateNumber>794</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="273" parent="269" name="id">
+    <table id="274" parent="264" name="user_roles">
+      <ObjectId>16450</ObjectId>
+      <StateNumber>794</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="275" parent="264" name="users">
+      <ObjectId>16407</ObjectId>
+      <StateNumber>774</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="276" parent="270" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4893,32 +4913,32 @@ false posixrules
       <SequenceId>16384</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="274" parent="269" name="brand">
+    <column id="277" parent="270" name="brand">
       <Position>2</Position>
       <StateNumber>739</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="275" parent="269" name="is_vegan">
+    <column id="278" parent="270" name="is_vegan">
       <Position>3</Position>
       <StateNumber>739</StateNumber>
       <StoredType>boolean|0s</StoredType>
       <TypeId>16</TypeId>
     </column>
-    <column id="276" parent="269" name="name">
+    <column id="279" parent="270" name="name">
       <Position>4</Position>
       <StateNumber>739</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="277" parent="269" name="price">
+    <column id="280" parent="270" name="price">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>739</StateNumber>
       <StoredType>double precision|0s</StoredType>
       <TypeId>701</TypeId>
     </column>
-    <index id="278" parent="269" name="food_pkey">
+    <index id="281" parent="270" name="food_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16390</ObjectId>
@@ -4927,14 +4947,14 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="279" parent="269" name="food_pkey">
+    <key id="282" parent="270" name="food_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16391</ObjectId>
       <Primary>1</Primary>
       <StateNumber>739</StateNumber>
       <UnderlyingIndexId>16390</UnderlyingIndexId>
     </key>
-    <column id="280" parent="270" name="id">
+    <column id="283" parent="271" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4943,19 +4963,19 @@ false posixrules
       <SequenceId>16392</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="281" parent="270" name="address">
+    <column id="284" parent="271" name="address">
       <Position>2</Position>
       <StateNumber>740</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="282" parent="270" name="name">
+    <column id="285" parent="271" name="name">
       <Position>3</Position>
       <StateNumber>740</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="283" parent="270" name="owner_pkey">
+    <index id="286" parent="271" name="owner_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16398</ObjectId>
@@ -4964,14 +4984,14 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="284" parent="270" name="owner_pkey">
+    <key id="287" parent="271" name="owner_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16399</ObjectId>
       <Primary>1</Primary>
       <StateNumber>740</StateNumber>
       <UnderlyingIndexId>16398</UnderlyingIndexId>
     </key>
-    <column id="285" parent="271" name="id">
+    <column id="288" parent="272" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4980,46 +5000,46 @@ false posixrules
       <SequenceId>16400</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="286" parent="271" name="age">
+    <column id="289" parent="272" name="age">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>741</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="287" parent="271" name="name">
+    <column id="290" parent="272" name="name">
       <Position>3</Position>
       <StateNumber>741</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="288" parent="271" name="food_id">
+    <column id="291" parent="272" name="food_id">
       <Position>4</Position>
       <StateNumber>741</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="289" parent="271" name="owner_id">
+    <column id="292" parent="272" name="owner_id">
       <Position>5</Position>
       <StateNumber>741</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="290" parent="271" name="fk6d3mgbnqk46vhicyr5w6kddmk">
+    <foreign-key id="293" parent="272" name="fk6d3mgbnqk46vhicyr5w6kddmk">
       <ColNames>food_id</ColNames>
       <ObjectId>16414</ObjectId>
       <StateNumber>745</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16385</RefTableId>
     </foreign-key>
-    <foreign-key id="291" parent="271" name="fk7qfti9yba86tgfe9oobeqxfxg">
+    <foreign-key id="294" parent="272" name="fk7qfti9yba86tgfe9oobeqxfxg">
       <ColNames>owner_id</ColNames>
       <ObjectId>16419</ObjectId>
       <StateNumber>746</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16393</RefTableId>
     </foreign-key>
-    <index id="292" parent="271" name="pet_pkey">
+    <index id="295" parent="272" name="pet_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16404</ObjectId>
@@ -5028,14 +5048,73 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="293" parent="271" name="pet_pkey">
+    <key id="296" parent="272" name="pet_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16405</ObjectId>
       <Primary>1</Primary>
       <StateNumber>741</StateNumber>
       <UnderlyingIndexId>16404</UnderlyingIndexId>
     </key>
-    <column id="294" parent="272" name="id">
+    <column id="297" parent="273" name="id">
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>792</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <SequenceId>16444</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="298" parent="273" name="name">
+      <Position>2</Position>
+      <StateNumber>792</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="299" parent="273" name="roles_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16448</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>792</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="300" parent="273" name="roles_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16449</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>792</StateNumber>
+      <UnderlyingIndexId>16448</UnderlyingIndexId>
+    </key>
+    <column id="301" parent="274" name="user_id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>793</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="302" parent="274" name="role_id">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>793</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="303" parent="274" name="fkhfh9dx7w3ubf1co1vdev94g3f">
+      <ColNames>user_id</ColNames>
+      <ObjectId>16458</ObjectId>
+      <StateNumber>795</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16407</RefTableId>
+    </foreign-key>
+    <foreign-key id="304" parent="274" name="fkh8ciramu9cc9q3qcqiv4ue8a6">
+      <ColNames>role_id</ColNames>
+      <ObjectId>16453</ObjectId>
+      <StateNumber>794</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16445</RefTableId>
+    </foreign-key>
+    <column id="305" parent="275" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -5044,27 +5123,27 @@ false posixrules
       <SequenceId>16406</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="295" parent="272" name="email">
+    <column id="306" parent="275" name="email">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>742</StateNumber>
       <StoredType>varchar(45)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="296" parent="272" name="password">
+    <column id="307" parent="275" name="password">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>742</StateNumber>
       <StoredType>varchar(64)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="297" parent="272" name="role">
+    <column id="308" parent="275" name="role">
       <Position>4</Position>
       <StateNumber>742</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="298" parent="272" name="users_pkey">
+    <index id="309" parent="275" name="users_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16410</ObjectId>
@@ -5073,7 +5152,7 @@ false posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="299" parent="272" name="uk6dotkott2kjsp8vw4d0m25fb7">
+    <index id="310" parent="275" name="uk6dotkott2kjsp8vw4d0m25fb7">
       <ColNames>email</ColNames>
       <ObjectId>16412</ObjectId>
       <StateNumber>744</StateNumber>
@@ -5083,14 +5162,14 @@ false posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="300" parent="272" name="users_pkey">
+    <key id="311" parent="275" name="users_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16411</ObjectId>
       <Primary>1</Primary>
       <StateNumber>742</StateNumber>
       <UnderlyingIndexId>16410</UnderlyingIndexId>
     </key>
-    <key id="301" parent="272" name="uk6dotkott2kjsp8vw4d0m25fb7">
+    <key id="312" parent="275" name="uk6dotkott2kjsp8vw4d0m25fb7">
       <ObjectId>16413</ObjectId>
       <StateNumber>744</StateNumber>
       <UnderlyingIndexId>16412</UnderlyingIndexId>

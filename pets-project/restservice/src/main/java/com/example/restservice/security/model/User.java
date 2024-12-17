@@ -16,19 +16,16 @@ public class User {
     @Column(nullable = false, unique = true, length = 45)
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles = new ArrayList<>();
-
     @Column(nullable = false, length = 64)
     private String password;
 
-    public User( String email, String password, List<Role> roles) {
-        this.email = email;
-        this.roles = roles;
-        this.password = password;
-    }
+    @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
+    )
+    private List<Role> roles = new ArrayList<>();
 
     public User() {
     }

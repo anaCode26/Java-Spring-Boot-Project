@@ -11,7 +11,6 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 public class UserController {
 
@@ -36,7 +35,5 @@ public class UserController {
         cookie.setPath("/api");
         response.addCookie(cookie);
         return ResponseEntity.ok(token);
-
     }
-
 }

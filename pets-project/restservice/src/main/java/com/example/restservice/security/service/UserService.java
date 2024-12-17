@@ -3,7 +3,6 @@ package com.example.restservice.security.service;
 import com.example.restservice.security.dto.LoginDto;
 import com.example.restservice.security.model.User;
 import com.example.restservice.security.repository.UserRepository;
-import jakarta.servlet.http.Cookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,7 +29,6 @@ public class UserService {
     public void registerUser(User user) {
         user.setEmail(user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("USER");
         userRepository.save(user);
     }
 

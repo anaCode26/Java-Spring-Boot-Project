@@ -1,24 +1,28 @@
 package com.example.restservice.security.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Table(name = "roles")
+import java.util.ArrayList;
+import java.util.List;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table
+@Entity(name = "roles")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String name;
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users = new ArrayList<>();
 
-    public String getName() {
-        return name;
-    }
 
-    public Role(String name) {
-        this.name = name;
-    }
-
-    public Role() {
-    }
 }
