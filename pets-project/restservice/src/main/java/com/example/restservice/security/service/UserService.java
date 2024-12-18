@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,8 +38,8 @@ public class UserService {
     public void registerUser(User user) {
         user.setEmail(user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Optional<Role> role = roleRepository.findByName("USER");
-        user.setRole(Arrays.asList(role.get()));
+        Role role = roleRepository.findByName("USER");
+        user.setRole(List.of(role));
         userRepository.save(user);
     }
 
