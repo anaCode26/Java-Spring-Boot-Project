@@ -52,7 +52,8 @@ public class SecurityConfig {
             auth.requestMatchers("/public/**").permitAll();
             auth.anyRequest().authenticated();
         })
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session.sessionCreationPolicy(
+                        SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
