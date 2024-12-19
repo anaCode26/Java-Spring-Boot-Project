@@ -3,7 +3,13 @@ package com.example.restservice.pet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
+@AllArgsConstructor
 @Entity
 @Table(name = "pet")
 public class Pet {
@@ -29,41 +35,4 @@ public class Pet {
         this.age = age;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public Food getFood() { return food;}
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
-    public void setFood(Food food) {
-        this.food = food;
-    }
 }

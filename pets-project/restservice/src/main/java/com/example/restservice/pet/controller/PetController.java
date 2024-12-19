@@ -7,6 +7,7 @@ import com.example.restservice.pet.model.Pet;
 import com.example.restservice.service.OwnerService;
 import com.example.restservice.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
