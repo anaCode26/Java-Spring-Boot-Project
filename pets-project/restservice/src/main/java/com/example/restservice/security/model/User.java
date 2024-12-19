@@ -36,7 +36,7 @@ public class User {
 
     public User() {}
 
-    public List<Role> getRole() { return roles;}
+    public List<Role> getRoles() { return roles;}
 
     public void setRole(List<Role> roles) { this.roles = roles;}
 
