@@ -1,23 +1,25 @@
 package com.example.restservice.pet.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Set;
 
-
+@Data
 @Entity
 @Table(name="owner")
 public class Owner {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    @SequenceGenerator(name = "owner_sequence", sequenceName = "owner_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "owner_sequence")
     private int id;
     private String name;
     private String address;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private Set<Pet> pets;
-
-
 
     public Owner() {}
 

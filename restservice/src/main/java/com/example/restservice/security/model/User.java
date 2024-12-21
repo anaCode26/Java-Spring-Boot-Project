@@ -1,18 +1,24 @@
 package com.example.restservice.security.model;
 
+import com.example.restservice.pet.model.Owner;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
-@AllArgsConstructor
+@Data
 @Entity
+@AllArgsConstructor
 @Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private int id;
 
     @Column(nullable = false, unique = true, length = 45)
@@ -21,6 +27,10 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    private Owner owner;
+
     @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_roles",
@@ -28,6 +38,8 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
     private List<Role> roles = new ArrayList<>();
+
+    public User() {}
 
     public String getEmail() {
         return email;
@@ -49,10 +61,21 @@ public class User {
         this.roles = roles;
     }
 
-    public User() {}
-
     public List<Role> getRoles() { return roles;}
 
-    public void setRole(List<Role> roles) { this.roles = roles;}
+    public Owner getOwner() {
+        return owner;
+    }
 
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

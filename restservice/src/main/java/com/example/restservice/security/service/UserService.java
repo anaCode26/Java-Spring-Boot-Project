@@ -1,5 +1,6 @@
 package com.example.restservice.security.service;
 
+import com.example.restservice.pet.model.Owner;
 import com.example.restservice.security.dto.LoginDto;
 import com.example.restservice.security.model.Role;
 import com.example.restservice.security.model.User;
@@ -37,8 +38,10 @@ public class UserService {
     public void registerUser(User user) {
         user.setEmail(user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Role role = roleRepository.findByName("USER");
-        user.setRole(List.of(role));
+        Role role = roleRepository.findByName("ROLE_USER");
+        Owner owner = new Owner();
+        user.setRoles(List.of(role));
+        user.setOwner(owner);
         userRepository.save(user);
     }
 
