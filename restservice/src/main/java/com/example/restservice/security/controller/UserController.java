@@ -2,7 +2,6 @@ package com.example.restservice.security.controller;
 
 import com.example.restservice.security.dto.LoginDTO;
 import com.example.restservice.security.dto.RegistrationDTO;
-import com.example.restservice.security.model.User;
 import com.example.restservice.security.service.JWTService;
 import com.example.restservice.security.service.UserService;
 import jakarta.servlet.http.Cookie;
