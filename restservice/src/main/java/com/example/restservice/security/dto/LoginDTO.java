@@ -1,6 +1,6 @@
 package com.example.restservice.security.dto;
 
-public record LoginDto (
+public record LoginDTO(
         String email,
         String password
 ){

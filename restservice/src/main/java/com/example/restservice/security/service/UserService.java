@@ -1,7 +1,9 @@
 package com.example.restservice.security.service;
 
 import com.example.restservice.pet.model.Owner;
-import com.example.restservice.security.dto.LoginDto;
+import com.example.restservice.pet.repository.OwnerRepository;
+import com.example.restservice.security.dto.LoginDTO;
+import com.example.restservice.security.dto.RegistrationDTO;
 import com.example.restservice.security.model.Role;
 import com.example.restservice.security.model.User;
 import com.example.restservice.security.repository.RoleRepository;
@@ -11,7 +13,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private OwnerRepository ownerRepository;
 
     @Autowired
     private JWTService jwtService;
@@ -35,17 +39,21 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public void registerUser(User user) {
-        user.setEmail(user.getEmail());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public void registerUser(RegistrationDTO registrationDTO) {
+        User user = new User();
+        user.setEmail(registrationDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
         Role role = roleRepository.findByName("ROLE_USER");
         Owner owner = new Owner();
+        owner.setName(registrationDTO.getName());
+        owner.setAddress(registrationDTO.getAddress());
         user.setRoles(List.of(role));
         user.setOwner(owner);
+        ownerRepository.save(owner);
         userRepository.save(user);
     }
 
-    public String loginUser(LoginDto loginDto) throws AuthenticationException {
+    public String loginUser(LoginDTO loginDto) throws AuthenticationException {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginDto.email(), loginDto.password()));
