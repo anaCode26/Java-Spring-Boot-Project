@@ -3,13 +3,9 @@ package com.example.restservice.security.model;
 import com.example.restservice.pet.model.Owner;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @Entity
 @AllArgsConstructor
 @Table(name = "users")
