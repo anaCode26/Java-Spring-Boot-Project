@@ -1,6 +1,7 @@
 package com.example.restservice.security.controller;
 
-import com.example.restservice.security.dto.LoginDto;
+import com.example.restservice.security.dto.LoginDTO;
+import com.example.restservice.security.dto.RegistrationDTO;
 import com.example.restservice.security.model.User;
 import com.example.restservice.security.service.JWTService;
 import com.example.restservice.security.service.UserService;
@@ -21,13 +22,13 @@ public class UserController {
     private JWTService jwtService;
 
     @PostMapping(value = "/public/user/register", consumes = "application/x-www-form-urlencoded")
-    public ResponseEntity<String> register(User user) {
-        userService.registerUser(user);
+    public ResponseEntity<String> register(RegistrationDTO registrationDTO) {
+        userService.registerUser(registrationDTO);
         return new ResponseEntity<>("User registered success!", HttpStatus.OK);
     }
 
     @PostMapping ("/public/user/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto, HttpServletResponse response) {
+    public ResponseEntity<String> login(@RequestBody LoginDTO loginDto, HttpServletResponse response) {
         String token = userService.loginUser(loginDto);
         Cookie cookie = new Cookie("token", token);
         cookie.setHttpOnly(true);

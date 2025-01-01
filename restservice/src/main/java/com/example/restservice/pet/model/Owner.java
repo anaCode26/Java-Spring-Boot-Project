@@ -1,14 +1,14 @@
 package com.example.restservice.pet.model;
 
 import jakarta.persistence.*;
-
 import java.util.Set;
-
 
 @Entity
 @Table(name="owner")
 public class Owner {
+
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
@@ -16,8 +16,6 @@ public class Owner {
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private Set<Pet> pets;
-
-
 
     public Owner() {}
 

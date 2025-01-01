@@ -1,17 +1,18 @@
 package com.example.restservice.security.model;
 
+import com.example.restservice.pet.model.Owner;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@AllArgsConstructor
 @Entity
+@AllArgsConstructor
 @Table(name = "users")
 public class User {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -21,6 +22,10 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    private Owner owner;
+
     @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_roles",
@@ -28,6 +33,8 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
     private List<Role> roles = new ArrayList<>();
+
+    public User() {}
 
     public String getEmail() {
         return email;
@@ -49,10 +56,21 @@ public class User {
         this.roles = roles;
     }
 
-    public User() {}
-
     public List<Role> getRoles() { return roles;}
 
-    public void setRole(List<Role> roles) { this.roles = roles;}
+    public Owner getOwner() {
+        return owner;
+    }
 
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
