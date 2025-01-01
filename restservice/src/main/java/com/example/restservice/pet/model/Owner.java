@@ -1,11 +1,8 @@
 package com.example.restservice.pet.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
 import java.util.Set;
 
-@Data
 @Entity
 @Table(name="owner")
 public class Owner {
