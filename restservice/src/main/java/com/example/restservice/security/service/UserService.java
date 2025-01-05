@@ -41,12 +41,12 @@ public class UserService {
 
     public void registerUser(RegistrationDTO registrationDTO) {
         User user = new User();
-        user.setEmail(registrationDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
+        user.setEmail(registrationDTO.email());
+        user.setPassword(passwordEncoder.encode(registrationDTO.password()));
         Role role = roleRepository.findByName("ROLE_USER");
         Owner owner = new Owner();
-        owner.setName(registrationDTO.getName());
-        owner.setAddress(registrationDTO.getAddress());
+        owner.setName(registrationDTO.name());
+        owner.setAddress(registrationDTO.address());
         user.setRoles(List.of(role));
         user.setOwner(owner);
         ownerRepository.save(owner);
