@@ -27,7 +27,7 @@ public class User {
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Owner owner;
 
-    @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
