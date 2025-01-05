@@ -2,13 +2,9 @@ package com.example.restservice.pet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Setter
-@Getter
-@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "pet")
 public class Pet {
@@ -25,13 +21,5 @@ public class Pet {
     @JsonIgnore
     @ManyToOne
     private Food food;
-
-    public Pet(){}
-
-    public Pet(Integer id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
 
 }
