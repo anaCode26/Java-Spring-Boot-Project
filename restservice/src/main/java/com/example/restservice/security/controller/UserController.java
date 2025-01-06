@@ -2,8 +2,6 @@ package com.example.restservice.security.controller;
 
 import com.example.restservice.security.dto.LoginDTO;
 import com.example.restservice.security.dto.RegistrationDTO;
-import com.example.restservice.security.model.User;
-import com.example.restservice.security.service.JWTService;
 import com.example.restservice.security.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,9 +15,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private JWTService jwtService;
 
     @PostMapping(value = "/public/user/register", consumes = "application/x-www-form-urlencoded")
     public ResponseEntity<String> register(RegistrationDTO registrationDTO) {

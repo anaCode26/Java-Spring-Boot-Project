@@ -51,6 +51,7 @@ public class SecurityConfig {
         return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> {
             auth.requestMatchers("/public/**").permitAll();
             auth.requestMatchers(HttpMethod.POST,"/api/pet").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.DELETE,"/api/pet/").hasRole("ADMIN");
             auth.anyRequest().authenticated();
         })
                 .sessionManagement(session -> session.sessionCreationPolicy(

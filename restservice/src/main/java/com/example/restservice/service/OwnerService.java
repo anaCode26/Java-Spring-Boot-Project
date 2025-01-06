@@ -32,7 +32,6 @@ public class OwnerService {
         return ownerRepository.getOwner(name, PageRequest.of((offset / limit), limit)).toList();
     }
 
-
     public Owner updateOwner(int id, Owner dataToUpdateOwner) {
         Owner existingOwner = getOwnerById(id);
         if (existingOwner == null) {
@@ -57,13 +56,7 @@ public class OwnerService {
     }
 
     public List<Owner> getOwnersWithPets(){
-        List<Owner> owners = ownerRepository.fetchOwnerPetsNoFetch();
-        return owners;
-    }
-
-    public Owner getAmountFoodPerOwner(int id) {
-//        Owner owner = ownerRepository.getAmountCostPerOwner();
-        return null;
+        return ownerRepository.fetchOwnerPetsNoFetch();
     }
 
 }

@@ -90,8 +90,7 @@ public class PetController {
     }
 
     @DeleteMapping("/pet/{id}")
-    public Pet deletePet(@PathVariable("id") int id){
-        return petService.deletePet(id);
+    public Pet deletePet(@PathVariable("id") int id){ return petService.deletePet(id);
     }
 
     @PutMapping("/owner/{ownerId}/pet/{petId}")

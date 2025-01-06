@@ -8,8 +8,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import java.util.List;
+import java.util.Optional;
 
 public interface PetRepository extends JpaRepository<Pet, Integer> {
+    Optional<Pet> findById(int id);
+
     @Query("SELECT p from Pet p " +
             " LEFT JOIN Food f ON p.food = f " +
             " where " +
@@ -17,7 +20,8 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
             " (:olderThan is NULL OR p.age > :olderThan) and " +
             " (:youngerThan is NULL OR p.age < :youngerThan) and " +
             " (:likesVeganFood is NULL OR f.isVegan = :likesVeganFood)")
-    Page<Pet> getPet(@Param("nameFilter") String name,
+    Page<Pet> getPet(
+                     @Param("nameFilter") String name,
                      @Param("olderThan") Integer olderThan,
                      @Param("youngerThan") Integer youngerThan,
                      @Param("likesVeganFood") Boolean likesVeganFood,
