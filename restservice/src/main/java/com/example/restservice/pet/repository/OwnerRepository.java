@@ -21,12 +21,4 @@ public interface OwnerRepository extends JpaRepository<Owner, Integer> {
     @Query(value = "SELECT o FROM Owner o JOIN o.pets p")
     List<Owner> fetchOwnerPetsNoFetch();
 
-//    @Query(value = " SELECT " +
-//            " SUM(f.price) AS total_spent " +
-//            " FROM owners o " +
-//            "JOIN owners o ON p.pet_id = o.pet_id " +
-//            "JOIN pets p ON f.food_id = p.food_id" )
-//    Owner getAmountCostPerOwner();
-
-
 }
