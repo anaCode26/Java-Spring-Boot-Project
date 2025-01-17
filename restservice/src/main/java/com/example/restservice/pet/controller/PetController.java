@@ -4,9 +4,13 @@ import com.example.restservice.pet.InvalidParameterException;
 import com.example.restservice.pet.ResourceNotFoundException;
 import com.example.restservice.pet.model.Owner;
 import com.example.restservice.pet.model.Pet;
+import com.example.restservice.security.model.User;
+import com.example.restservice.security.model.UserPrincipal;
 import com.example.restservice.service.OwnerService;
 import com.example.restservice.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authorization.AuthorizationDecision;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,10 +28,18 @@ public class PetController {
     private OwnerService ownerService;
 
     @GetMapping("/pet/{id}")
-    public Pet getPetById(@PathVariable("id") int id) {
+    public Pet getPetById(@PathVariable("id") int id, UserPrincipal userPrincipal) {
         Pet pet = petService.getPetById(id);
         if (pet == null){
             throw new ResourceNotFoundException();
+        }
+        Owner petOwner = pet.getOwner();
+
+        User user = userPrincipal.getUser();
+        Owner userOwner = user.getOwner();
+
+        if(petOwner.getId() != userOwner.getId() && !user.isAdmin()) {
+            throw new AuthorizationDeniedException("You don't have access to this resource", new AuthorizationDecision(false));
         }
         return pet;
     }
