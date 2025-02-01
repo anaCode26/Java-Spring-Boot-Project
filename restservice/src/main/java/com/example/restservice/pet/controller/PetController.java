@@ -81,14 +81,26 @@ public class PetController {
     }
 
     @PostMapping("/pet")
-    public Pet createPet(@RequestBody() Pet pet){
+    public Pet createPet(@RequestBody() Pet pet, @AuthenticationPrincipal UserPrincipal userPrincipal) {
+        User user = userPrincipal.getUser();
+
+        if(!user.isAdmin()) {
+            throw new AuthorizationDeniedException("You don't have access to this resource", new AuthorizationDecision(false));
+        }
+
         return petService.createPet(pet);
     }
 
     @PutMapping("/pet/{id}")
-    public Pet updatePet(@PathVariable("id") int id, @RequestBody() Pet pet){
+    public Pet updatePet(@PathVariable("id") int id, @RequestBody() Pet pet, @AuthenticationPrincipal UserPrincipal userPrincipal) {
+        User user = userPrincipal.getUser();
+
         if(!isNameValid(pet)) {
             throw new InvalidParameterException("Name must not be null or empty");
+        }
+
+        if(!user.isAdmin()) {
+            throw new AuthorizationDeniedException("You don't have access to this resource", new AuthorizationDecision(false));
         }
 
         if(!isAgePositiveNumber(pet)) {
@@ -98,12 +110,25 @@ public class PetController {
     }
 
     @PatchMapping("/pet/{id}")
-    public Pet updatePetPartially(@PathVariable("id") int id, @RequestBody() Pet pet){
+    public Pet updatePetPartially(@PathVariable("id") int id, @RequestBody() Pet pet, @AuthenticationPrincipal UserPrincipal userPrincipal) {
+        User user = userPrincipal.getUser();
+
+        if(!user.isAdmin()) {
+            throw new AuthorizationDeniedException("You don't have access to this resource", new AuthorizationDecision(false));
+        }
+
         return petService.updatePetPartially(id, pet);
     }
 
     @DeleteMapping("/pet/{id}")
-    public Pet deletePet(@PathVariable("id") int id){ return petService.deletePet(id);
+    public Pet deletePet(@PathVariable("id") int id, @AuthenticationPrincipal UserPrincipal userPrincipal){
+        User user = userPrincipal.getUser();
+
+        if(!user.isAdmin()) {
+            throw new AuthorizationDeniedException("You don't have access to this resource", new AuthorizationDecision(false));
+        }
+
+        return petService.deletePet(id);
     }
 
     @PutMapping("/owner/{ownerId}/pet/{petId}")

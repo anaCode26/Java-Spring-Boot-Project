@@ -54,6 +54,7 @@ public class SecurityConfig {
             auth.requestMatchers("/public/**").permitAll();
             auth.requestMatchers(HttpMethod.POST,"/api/pet").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.PUT,"/api/pet").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.DELETE,"/api/pet").hasRole("ADMIN");
             auth.anyRequest().authenticated();
         })
                 .sessionManagement(session -> session.sessionCreationPolicy(
