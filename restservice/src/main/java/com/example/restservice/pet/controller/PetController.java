@@ -11,6 +11,7 @@ import com.example.restservice.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationDeniedException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class PetController {
     private OwnerService ownerService;
 
     @GetMapping("/pet/{id}")
-    public Pet getPetById(@PathVariable("id") int id, UserPrincipal userPrincipal) {
+    public Pet getPetById(@PathVariable("id") int id, @AuthenticationPrincipal UserPrincipal userPrincipal) {
         Pet pet = petService.getPetById(id);
         if (pet == null){
             throw new ResourceNotFoundException();
