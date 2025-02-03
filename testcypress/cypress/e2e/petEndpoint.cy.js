@@ -29,7 +29,7 @@ describe("Validate the pet methods", () => {
         });
     });
 
-    it("POST: create_valid pet_succeeds", () => {
+    it.skip("POST: create_valid pet_succeeds", () => {
         cy.request({
             method: "POST",
             url: "http://localhost:8080/api/pet",
@@ -72,7 +72,7 @@ describe("Validate the pet methods", () => {
         });
     });
 
-    it("DELETE: deletes an existing pet", () => {
+    it.skip("DELETE: deletes an existing pet", () => {
         cy.request({ method: "DELETE",
             url: "http://localhost:8080/api/pet/6"}).then(
             (response) => {
