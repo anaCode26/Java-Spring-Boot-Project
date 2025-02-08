@@ -5,11 +5,15 @@ import com.example.restservice.pet.dto.FoodPreference;
 import com.example.restservice.pet.model.Food;
 import com.example.restservice.pet.model.Owner;
 import com.example.restservice.pet.model.Pet;
+import com.example.restservice.security.Role;
 import com.example.restservice.security.model.User;
 import com.example.restservice.security.model.UserPrincipal;
 import com.example.restservice.service.FoodService;
 import com.example.restservice.service.OwnerService;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.persistence.Access;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -54,11 +58,22 @@ public class FoodController {
         User user = userPrincipal.getUser();
         Owner userOwner = user.getOwner();
 
-        if(foodPet.getId() != userOwner.getId() && !user.isAdmin() ) {
+        if(foodPet.getId() != userOwner.getId()) {
             throw new AuthorizationDeniedException("You don't have access to this resource", new AuthorizationDecision(false));
 
         }
 
+        return foodService.updateFood(id, food);
+    }
+
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PutMapping("/admin/food/{id}")
+    public Food updateFoodAdmin(@PathVariable("id") int id, @RequestBody() Food food) {
+        Food petsFood = getFoodById(id);
+        if (petsFood == null) {
+            throw new ResourceNotFoundException();
+        }
         return foodService.updateFood(id, food);
     }
 
