@@ -100,7 +100,8 @@ class PetControllerIT {
 
 			// Act
 			// Assert
-			assertThrows(InvalidParameterException.class,() -> petController.updatePet(savedPet.getId(), savedPet));
+			assertThrows(InvalidParameterException.class,
+					() -> petController.updatePet(savedPet.getId(), savedPet));
 	}
 
 	@Test
@@ -114,7 +115,8 @@ class PetControllerIT {
 
 		// Act
 		// Assert
-		assertThrows(InvalidParameterException.class,	() -> petController.updatePet(savedPet.getId(), savedPet));
+		assertThrows(InvalidParameterException.class,
+				() -> petController.updatePet(savedPet.getId(), savedPet));
 	}
 
 	@Test
