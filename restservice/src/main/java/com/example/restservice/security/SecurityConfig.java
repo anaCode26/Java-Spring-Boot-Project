@@ -1,5 +1,6 @@
 package com.example.restservice.security;
 
+import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,8 +53,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> {
             auth.requestMatchers("/public/**").permitAll();
+            auth.requestMatchers("/error").permitAll();
             auth.requestMatchers(HttpMethod.POST,"/api/pet").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.PUT,"/api/pet").hasRole("ADMIN");
+            auth.dispatcherTypeMatchers(DispatcherType.ERROR);
             auth.anyRequest().authenticated();
         })
                 .sessionManagement(session -> session.sessionCreationPolicy(
