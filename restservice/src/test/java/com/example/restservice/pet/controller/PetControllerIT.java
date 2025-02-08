@@ -141,7 +141,8 @@ class PetControllerIT {
 		int NON_EXISTING_PET_ID = 0;
 
 		// Assert
-		assertThrows(ResourceNotFoundException.class,	() -> petController.deletePet(NON_EXISTING_PET_ID));
+		assertThrows(ResourceNotFoundException.class,
+				() -> petController.deletePet(NON_EXISTING_PET_ID));
 	}
 
 	@Test
