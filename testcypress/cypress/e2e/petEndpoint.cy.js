@@ -1,12 +1,6 @@
 describe("Validate the pet methods", () => {
     beforeEach("authentication", () => {
-        cy.request({method: "POST",
-            url: "http://localhost:8080/public/user/login",
-            body: {
-                email: "anaTest1@gmail.com",
-                password: "panchito"
-            }
-        })
+        cy.login();
     });
 
     it("Get: should get all pets", () => {

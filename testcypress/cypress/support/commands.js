@@ -10,7 +10,19 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+ Cypress.Commands.add('login', (email, password) => {
+     cy.request({
+         method: 'POST',
+         url: 'http://localhost:8080/public/user/login',
+         body: {
+             email: "anaTest1@gmail.com",
+             password: "panchito"
+         }
+     })
+ }).then((response) => {
+     expect(response.status).to.eq(200);
+     cy.setCookie('authToken', response.body.token)
+ })
 //
 //
 // -- This is a child command --
