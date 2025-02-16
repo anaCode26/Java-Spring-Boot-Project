@@ -40,10 +40,11 @@ public class PetController {
         User user = userPrincipal.getUser();
         Owner userOwner = user.getOwner();
 
-        if(petOwner.getId() != userOwner.getId() && !user.isAdmin()) {
+        if((petOwner != null && petOwner.getId() == userOwner.getId()) || user.isAdmin()) {
+            return pet;
+        } else {
             throw new AuthorizationDeniedException("You don't have access to this resource", new AuthorizationDecision(false));
         }
-        return pet;
     }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
