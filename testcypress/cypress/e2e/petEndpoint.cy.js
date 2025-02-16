@@ -1,4 +1,5 @@
 describe("Validate the pet methods", () => {
+    const baseUrl = "http://localhost:8080/api/pet";
     beforeEach("authentication", () => {
         cy.login();
     });
@@ -6,7 +7,7 @@ describe("Validate the pet methods", () => {
     const createPet = (name, age) => {
         return cy.request({
             method: "POST",
-            url: "http://localhost:8080/api/pet",
+            url: baseUrl,
             body: {
                 name: name,
                 age: age,
@@ -29,7 +30,7 @@ describe("Validate the pet methods", () => {
         createPet("Popi", 8);
         cy.request({
             method: "GET",
-            url: "http://localhost:8080/api/pet",
+            url: baseUrl,
         }).then((response) => {
             expect(response.status).to.eq(200);
             expect(response).to.not.empty;
@@ -40,7 +41,7 @@ describe("Validate the pet methods", () => {
         createPet("pepino", 2).then((response) => {
             cy.request({
                 method: "GET",
-                url: "http://localhost:8080/api/pet/" + response.body.id,
+                url: baseUrl + "/" + response.body.id,
             }).then((response) => {
                 expect(response.status).to.eq(200);
                 expect(response.body.name).to.eq("pepino");
@@ -57,7 +58,7 @@ describe("Validate the pet methods", () => {
             };
             cy.request({
                 method: "PUT",
-                url: "http://localhost:8080/api/pet/" + response.body.id,
+                url: baseUrl + "/" + response.body.id,
                 body: updatedPetData,
             }).then((response) => {
                 expect(response.status).to.eq(200);
@@ -74,7 +75,7 @@ describe("Validate the pet methods", () => {
             }
             cy.request({
                 method: "PATCH",
-                url: "http://localhost:8080/api/pet/" + response.body.id,
+                url: baseUrl + "/" + response.body.id,
                 body: updatePetPartially,
             }).then((response) => {
                 expect(response.status).to.eq(200);
@@ -87,7 +88,7 @@ describe("Validate the pet methods", () => {
         createPet("popito", 10).then((response) => {
             cy.request({
                 method: "DELETE",
-                url: "http://localhost:8080/api/pet/" + response.body.id,
+                url: baseUrl + "/" + response.body.id,
             }).then((response) => {
                 expect(response.status).to.eq(200);
             });
