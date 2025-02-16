@@ -9,6 +9,7 @@ import com.example.restservice.security.model.UserPrincipal;
 import com.example.restservice.service.OwnerService;
 import com.example.restservice.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -45,6 +46,7 @@ public class PetController {
         return pet;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/pet")
     public List<Pet> getPets(@RequestParam("name") Optional<String> name,
                              @RequestParam("olderThan") Optional<Integer> olderThan,
@@ -80,13 +82,15 @@ public class PetController {
         return petService.getPetAmountByOwnerId(id);
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/pet")
-    public Pet createPet(@RequestBody() Pet pet){
+    public Pet createPet(@RequestBody() Pet pet) {
         return petService.createPet(pet);
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping("/pet/{id}")
-    public Pet updatePet(@PathVariable("id") int id, @RequestBody() Pet pet){
+    public Pet updatePet(@PathVariable("id") int id, @RequestBody() Pet pet) {
         if(!isNameValid(pet)) {
             throw new InvalidParameterException("Name must not be null or empty");
         }
@@ -97,13 +101,16 @@ public class PetController {
         return petService.updatePet(id, pet);
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PatchMapping("/pet/{id}")
-    public Pet updatePetPartially(@PathVariable("id") int id, @RequestBody() Pet pet){
+    public Pet updatePetPartially(@PathVariable("id") int id, @RequestBody() Pet pet) {
         return petService.updatePetPartially(id, pet);
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/pet/{id}")
-    public Pet deletePet(@PathVariable("id") int id){ return petService.deletePet(id);
+    public Pet deletePet(@PathVariable("id") int id){
+        return petService.deletePet(id);
     }
 
     @PutMapping("/owner/{ownerId}/pet/{petId}")
