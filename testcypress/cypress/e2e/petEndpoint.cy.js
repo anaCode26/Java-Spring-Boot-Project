@@ -1,4 +1,4 @@
-describe("Validate the pet methods", () => {
+describe("Pet controller tests", () => {
     const baseUrl = "http://localhost:8080/api/pet";
     beforeEach("authentication", () => {
         cy.login();
